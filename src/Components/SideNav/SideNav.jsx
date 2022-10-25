@@ -16,14 +16,24 @@ const SideNav = () => {
         },
         {
             id: 2,
-            path: '/lifestyle',
-            text: 'LIFESTYLE',
+            path: '/reserve',
+            text: 'Reserve Form',
+        },
+        {
+            id: 3,
+            path: '/my-reservations',
+            text: 'My Reservations',
+        },
+        {
+            id: 4,
+            path: '/add-room',
+            text: 'Add Room',
         },
 
         {
-            id: 3,
-            path: '/shop',
-            text: 'SHOP',
+            id: 5,
+            path: '/delete-room',
+            text: 'Delete Room',
         },
 
     ];
