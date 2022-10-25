@@ -1,16 +1,16 @@
 import { useState } from 'react';
 
 const NewPassword = () => {
-  const [password, setPassword] = useState('')
-  const [confirmPassword, setConfirmPassword] = useState('')
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
 
   const onPasswordChange = ({ target }) => {
-    setPassword(target.value)
-  }
+    setPassword(target.value);
+  };
 
   const onConfirmPasswordChange = ({ target }) => {
-    setConfirmPassword(target.value)
-  }
+    setConfirmPassword(target.value);
+  };
 
   return (
     <>
@@ -44,10 +44,11 @@ const NewPassword = () => {
             </div>
 
             <div className="mb-8 rounded-md shadow-sm">
-              <label htmlFor="password" className="sr-only">
+              <label htmlFor="confirm-password" className="sr-only">
                 Confirm new password
               </label>
               <input
+                name="confirm-password"
                 type="password"
                 value={confirmPassword}
                 onChange={onConfirmPasswordChange}
@@ -69,7 +70,7 @@ const NewPassword = () => {
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
 export default NewPassword;

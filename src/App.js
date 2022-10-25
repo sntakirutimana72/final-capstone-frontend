@@ -1,5 +1,5 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { SignedInRoute } from './components/middlewares'
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { SignedInRoute } from './components/middlewares';
 import {
   Signin, Register, PasswordReset, NewPassword,
 } from './components/authentication';
@@ -15,6 +15,6 @@ const App = () => (
       </Route>
     </Routes>
   </BrowserRouter>
-)
+);
 
 export default App;

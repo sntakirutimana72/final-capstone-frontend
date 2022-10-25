@@ -1,20 +1,20 @@
 import { useState } from 'react';
-import { spaceless } from '../../helpers/spaceless';
+import spaceless from '../../helpers/spaceless';
 
 const Register = () => {
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const onNameChange = ({ target }) => {
-    setName(target.value.trim())
-  }
+    setName(target.value.trim());
+  };
   const onEmailChange = ({ target }) => {
-    setEmail(spaceless(target.value))
-  }
+    setEmail(spaceless(target.value));
+  };
   const onPasswordChange = ({ target }) => {
-    setPassword(target.value)
-  }
+    setPassword(target.value);
+  };
 
   return (
     <>
@@ -43,13 +43,13 @@ const Register = () => {
                 autoComplete="name"
                 required
                 className="relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                placeholder="Fullame"
+                placeholder="Fullname"
               />
             </div>
 
             <div className="mb-6 rounded-md shadow-sm">
               <label htmlFor="email" className="sr-only">
-                Email address
+                Email
               </label>
               <input
                 name="email"
@@ -59,7 +59,7 @@ const Register = () => {
                 autoComplete="email"
                 required
                 className="relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                placeholder="Email address"
+                placeholder="Email"
               />
             </div>
 
@@ -91,7 +91,7 @@ const Register = () => {
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
 export default Register;

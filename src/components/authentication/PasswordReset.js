@@ -1,13 +1,12 @@
 import { useState } from 'react';
-import { NavLink } from 'react-router-dom';
-import { spaceless } from '../../helpers/spaceless';
+import spaceless from '../../helpers/spaceless';
 
 const PasswordReset = () => {
-  const [email, setEmail] = useState('')
+  const [email, setEmail] = useState('');
 
   const onEmailChange = ({ target }) => {
-    setEmail(spaceless(target.value))
-  }
+    setEmail(spaceless(target.value));
+  };
 
   return (
     <>
@@ -27,7 +26,7 @@ const PasswordReset = () => {
           <form className="mt-8 space-y-6" action="#">
             <div className="mb-8 rounded-md shadow-sm">
               <label htmlFor="email" className="sr-only">
-                Email address
+                Email
               </label>
               <input
                 name="email"
@@ -37,7 +36,7 @@ const PasswordReset = () => {
                 autoComplete="email"
                 required
                 className="relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                placeholder="Email address"
+                placeholder="Email"
               />
             </div>
 
@@ -53,7 +52,7 @@ const PasswordReset = () => {
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
 export default PasswordReset;

@@ -1,18 +1,18 @@
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { spaceless } from '../../helpers/spaceless';
-import { LockClosedIcon } from '@heroicons/react/20/solid'
+import { LockClosedIcon } from '@heroicons/react/20/solid';
+import spaceless from '../../helpers/spaceless';
 
 const Signin = () => {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const onEmailChange = ({ target }) => {
-    setEmail(spaceless(target.value))
-  }
+    setEmail(spaceless(target.value));
+  };
   const onPasswordChange = ({ target }) => {
-    setPassword(target.value)
-  }
+    setPassword(target.value);
+  };
 
   return (
     <>
@@ -32,7 +32,7 @@ const Signin = () => {
           <form className="mt-8 space-y-6" action="#">
             <div className="mb-6 rounded-md shadow-sm">
               <label htmlFor="email" className="sr-only">
-                Email address
+                Email
               </label>
               <input
                 name="email"
@@ -42,7 +42,7 @@ const Signin = () => {
                 autoComplete="email"
                 required
                 className="relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                placeholder="Email address"
+                placeholder="Email"
               />
             </div>
 
@@ -88,7 +88,7 @@ const Signin = () => {
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
 export default Signin;

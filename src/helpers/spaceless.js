@@ -3,4 +3,6 @@
  * @param { String } raw
  * @returns
  */
-export const spaceless = (raw, holder='') => raw.replace(/ +/, holder);
+const spaceless = (raw, holder = '') => raw.replace(/ +/, holder);
+
+export default spaceless;
