@@ -3,6 +3,9 @@
 @tailwind utilities;
 
 .active {
-  background-color: rgb(77, 245, 85) !important;
+  background-color: rgb(153, 212, 97) !important;
   color: white !important;
+}
+.menuItem {
+  /* padding-left: 7% !important; */
 }
