@@ -3,7 +3,7 @@ import { SignedInRoute } from './components/middlewares';
 import {
   Signin, Register, PasswordReset, NewPassword,
 } from './components/authentication';
-import SideNav from './src/components/SideNav/SideNav';
+import SideNav from './components/SideNav/SideNav';
 
 function App() {
   return (
