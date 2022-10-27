@@ -1,15 +1,16 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { SignedInRoute } from './components/middlewares';
+import { SignedInRoute } from './Components/middlewares';
 import {
   Signin, Register, PasswordReset, NewPassword,
-} from './components/authentication';
-import SideNav from './components/SideNav/SideNav';
+} from './Components/authentication';
+import SideNav from './Components/SideNav/SideNav';
+import Room from './Pages/Room/Room';
 
 function App() {
   return (
     <div className="App">
       <Router>
-        <main className="">
+        <main className="flex h-screen">
           <SideNav />
           <Routes>
             <Route element={<SignedInRoute />}>
@@ -19,7 +20,7 @@ function App() {
               <Route path="reset-password" element={<PasswordReset />} />
             </Route>
             <Route exact path="/" />
-            <Route exact path="/rooms" />
+            <Route exact path="/rooms" element={<Room />} />
             <Route exact path="/reserve" />
             <Route exact path="/my-reservations" />
             <Route exact path="/add-room" />

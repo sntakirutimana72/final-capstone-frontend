@@ -17,7 +17,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   padding: theme.spacing(0, 1),
   // necessary for content to be below app bar
   ...theme.mixins.toolbar,
-  justifyContent: 'flex-end',
+  justifyContent: 'center',
 }));
 
 const SideNav = () => {
@@ -79,7 +79,7 @@ const SideNav = () => {
         open={open}
       >
         <DrawerHeader>
-          Logo
+          EASY BOOKING
         </DrawerHeader>
         <Divider />
         <List>
@@ -90,7 +90,7 @@ const SideNav = () => {
           ))}
         </List>
       </Drawer>
-      <IconButton onClick={open ? handleDrawerClose : handleDrawerOpen}>
+      <IconButton onClick={open ? handleDrawerClose : handleDrawerOpen} className={open ? 'nav__button open' : 'nav__button close'}>
         {open ? <ChevronLeftIcon /> : <ChevronRightIcon />}
       </IconButton>
     </Box>

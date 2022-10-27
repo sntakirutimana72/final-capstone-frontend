@@ -6,3 +6,24 @@
   background-color: rgb(153, 212, 97) !important;
   color: white !important;
 }
+
+.nav__button {
+  width: 73px !important;
+  background: #99d461 !important;
+  height: 55px !important;
+  color: white !important;
+  border-radius: 0 !important;
+  border-top-right-radius: 92px !important;
+  border-bottom-right-radius: 100px !important;
+  position: absolute !important;
+  z-index: 99999 !important;
+  margin-top: 30%!important;
+}
+
+.nav__button.open {
+  margin-left: 240px !important;
+}
+
+.nav__button.close {
+  margin-left: 0 !important;
+}
