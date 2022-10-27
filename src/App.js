@@ -1,6 +1,9 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import './App.css';
-import SideNav from './Components/SideNav/SideNav';
+import { SignedInRoute } from './components/middlewares';
+import {
+  Signin, Register, PasswordReset, NewPassword,
+} from './components/authentication';
+import SideNav from './components/SideNav/SideNav';
 
 function App() {
   return (
@@ -9,6 +12,12 @@ function App() {
         <main className="">
           <SideNav />
           <Routes>
+            <Route element={<SignedInRoute />}>
+              <Route path="login" element={<Signin />} />
+              <Route path="register" element={<Register />} />
+              <Route path="set-new-password" element={<NewPassword />} />
+              <Route path="reset-password" element={<PasswordReset />} />
+            </Route>
             <Route exact path="/" />
             <Route exact path="/rooms" />
             <Route exact path="/reserve" />

@@ -1,37 +1,15 @@
 import * as React from 'react';
 import { NavLink } from 'react-router-dom';
-import { styled, useTheme } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import CssBaseline from '@mui/material/CssBaseline';
-import MuiAppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
 import List from '@mui/material/List';
-import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ListItem from '@mui/material/ListItem';
-
-const drawerWidth = 240;
-const AppBar = styled(MuiAppBar, {
-  shouldForwardProp: (prop) => prop !== 'open',
-})(({ theme, open }) => ({
-  transition: theme.transitions.create(['margin', 'width'], {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.leavingScreen,
-  }),
-  ...(open && {
-    width: `calc(100% - ${drawerWidth}px)`,
-    marginLeft: `${drawerWidth}px`,
-    transition: theme.transitions.create(['margin', 'width'], {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  }),
-}));
 
 const DrawerHeader = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -42,7 +20,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   justifyContent: 'flex-end',
 }));
 
-export default function SideNav() {
+const SideNav = () => {
   const links = [
     {
       id: 1,
@@ -72,36 +50,21 @@ export default function SideNav() {
     },
 
   ];
-  const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
-
+  const [open, setOpen] = React.useState(true);
+  const [drawerWidth, setDrawerWidth] = React.useState(240);
   const handleDrawerOpen = () => {
     setOpen(true);
+    setDrawerWidth(240);
   };
 
   const handleDrawerClose = () => {
     setOpen(false);
+    setDrawerWidth(0);
   };
 
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <AppBar position="fixed" open={open}>
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            sx={{ mr: 2, ...(open && { display: 'none' }) }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" noWrap component="div">
-            Easy Booking
-          </Typography>
-        </Toolbar>
-      </AppBar>
       <Drawer
         sx={{
           width: drawerWidth,
@@ -116,19 +79,21 @@ export default function SideNav() {
         open={open}
       >
         <DrawerHeader>
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-          </IconButton>
+          Logo
         </DrawerHeader>
         <Divider />
         <List>
           {links.map((link) => (
-            <ListItem button component={NavLink} to={link.path} key={link.path} className="h-16 font-bold text-lg ">
+            <ListItem button component={NavLink} to={link.path} key={link.path} className="h-16 font-bold text-lg menuItem">
               {link.text}
             </ListItem>
           ))}
         </List>
       </Drawer>
+      <IconButton onClick={open ? handleDrawerClose : handleDrawerOpen}>
+        {open ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+      </IconButton>
     </Box>
   );
-}
+};
+export default SideNav;
