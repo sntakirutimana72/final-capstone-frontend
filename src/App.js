@@ -5,6 +5,7 @@ import {
 } from './Components/authentication';
 import SideNav from './Components/SideNav/SideNav';
 import Room from './Pages/Room/Room';
+import AddRoom from './Components/AddRoom/AddRoom';
 
 function App() {
   return (
@@ -23,7 +24,7 @@ function App() {
             <Route exact path="/rooms" element={<Room />} />
             <Route exact path="/reserve" />
             <Route exact path="/my-reservations" />
-            <Route exact path="/add-room" />
+            <Route exact path="/add-room" element={<AddRoom />} />
             <Route exact path="/delete-room" />
           </Routes>
         </main>
