@@ -1,26 +1,30 @@
 import * as React from 'react';
 import { NavLink } from 'react-router-dom';
-import { styled } from '@mui/material/styles';
+import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import CssBaseline from '@mui/material/CssBaseline';
+import Toolbar from '@mui/material/Toolbar';
 import List from '@mui/material/List';
+import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
+import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ListItem from '@mui/material/ListItem';
 
+const drawerWidth = 240;
 const DrawerHeader = styled('div')(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
   padding: theme.spacing(0, 1),
   // necessary for content to be below app bar
   ...theme.mixins.toolbar,
-  justifyContent: 'center',
+  justifyContent: 'flex-end',
 }));
 
-const SideNav = () => {
+export default function SideNav() {
   const links = [
     {
       id: 1,
@@ -50,21 +54,36 @@ const SideNav = () => {
     },
 
   ];
+  const theme = useTheme();
   const [open, setOpen] = React.useState(true);
-  const [drawerWidth, setDrawerWidth] = React.useState(240);
+
   const handleDrawerOpen = () => {
     setOpen(true);
-    setDrawerWidth(240);
   };
 
   const handleDrawerClose = () => {
     setOpen(false);
-    setDrawerWidth(0);
   };
 
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box sx={{ display: 'flex' }} className="sidenav">
       <CssBaseline />
+
+      <Toolbar sx={{ position: 'absolute' }}>
+        <IconButton
+          color="inherit"
+          aria-label="open drawer"
+          onClick={handleDrawerOpen}
+          edge="start"
+          sx={{ mr: 2, ...(open && { display: 'none' }) }}
+        >
+          <MenuIcon />
+        </IconButton>
+        <Typography variant="h6" noWrap component="div">
+          Easy Booking
+        </Typography>
+      </Toolbar>
+
       <Drawer
         sx={{
           width: drawerWidth,
@@ -79,21 +98,19 @@ const SideNav = () => {
         open={open}
       >
         <DrawerHeader>
-          EASY BOOKING
+          <IconButton onClick={handleDrawerClose} className="close__drawer">
+            {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+          </IconButton>
         </DrawerHeader>
         <Divider />
         <List>
           {links.map((link) => (
-            <ListItem button component={NavLink} to={link.path} key={link.path} className="h-16 font-bold text-lg menuItem">
+            <ListItem button component={NavLink} to={link.path} key={link.path} className="h-16 font-bold text-lg ">
               {link.text}
             </ListItem>
           ))}
         </List>
       </Drawer>
-      <IconButton onClick={open ? handleDrawerClose : handleDrawerOpen} className={open ? 'nav__button open' : 'nav__button close'}>
-        {open ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-      </IconButton>
     </Box>
   );
-};
-export default SideNav;
+}
