@@ -17,7 +17,7 @@
   border-bottom-right-radius: 100px !important;
   position: absolute !important;
   z-index: 99999 !important;
-  margin-top: 30%!important;
+  bottom: 12% !important;
 }
 
 .nav__button.open {
@@ -26,4 +26,15 @@
 
 .nav__button.close {
   margin-left: 0 !important;
+}
+.close__drawer {
+  display: none !important;
+}
+@media screen and (max-width: 720px) {
+  .sidenav {
+    position: absolute !important;
+  }
+  .close__drawer {
+    display: block !important;
+  }
 }

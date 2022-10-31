@@ -1,7 +1,9 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { LockClosedIcon } from '@heroicons/react/20/solid';
 import spaceless from '../../helpers/spaceless';
+import { signIn } from '../../redux/reducers/userReducer';
 
 const Signin = () => {
   const [email, setEmail] = useState('');
@@ -12,6 +14,14 @@ const Signin = () => {
   };
   const onPasswordChange = ({ target }) => {
     setPassword(target.value);
+  };
+  const dispatch = useDispatch();
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    const email = data.get('email');
+    const password = data.get('password');
+    dispatch(signIn(email, password));
   };
 
   return (
@@ -29,7 +39,7 @@ const Signin = () => {
             </h2>
           </div>
 
-          <form className="mt-8 space-y-6" action="#">
+          <form className="mt-8 space-y-6" action="#" onSubmit={handleSubmit}>
             <div className="mb-6 rounded-md shadow-sm">
               <label htmlFor="email" className="sr-only">
                 Email
