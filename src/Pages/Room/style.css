@@ -1,0 +1,39 @@
+.link {
+  text-decoration: none;
+  color: rgb(26, 26, 26);
+  transition: 0.1s;
+}
+
+.link:hover {
+  color: var(--primary-green);
+}
+
+.room-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-height: 400px;
+}
+
+.room-image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.room-image {
+  height: 300px;
+  object-fit: cover;
+  width: 250px;
+  border-radius: 20px;
+}
+
+.room-price {
+  background-color: var(--primary-green);
+  border-radius: 50px;
+  padding: 10px 20px;
+  margin-top: 1rem;
+  color: white;
+  font-weight: 500;
+}
