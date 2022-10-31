@@ -13,7 +13,9 @@ const Room = ({
         <img src={picture} alt={name} className="room-image" />
       </div>
       <div className="flex flex-col justify-center items-center">
-        <h2 className="font-bold uppercase mt-5 text-[15px] room-name">{name}</h2>
+        <h2 className="font-bold uppercase mt-5 text-[15px] room-name">
+          {name}
+        </h2>
         <div className="room-description">
           <p className="room-description-text">{description}</p>
           <div className="room-social">
