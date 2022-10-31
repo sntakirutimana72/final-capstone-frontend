@@ -14,7 +14,7 @@ const Rooms = () => {
 
   return (
     <>
-      {rooms.map((room) => (
+      {rooms.slice(0).reverse().map((room) => (
         <Room
           key={room.id}
           picture={room.picture}
