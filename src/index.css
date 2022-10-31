@@ -4,7 +4,7 @@
 
 :root {
   --gray-text: #212529;
-  --primary-green: #97c010;
+  --primary-green: rgb(153, 212, 97);
 }
 
 .active {
