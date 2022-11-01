@@ -4,7 +4,7 @@ import {
   Signin, Register, PasswordReset, NewPassword,
 } from './Components/authentication';
 import SideNav from './Components/SideNav/SideNav';
-import roomDetail from './Pages/Room/roomDetail';
+import RoomDetail from './Pages/Room/roomDetail';
 import Room from './Pages/Room/Room';
 
 function App() {
@@ -22,7 +22,7 @@ function App() {
             </Route>
             <Route exact path="/" />
             <Route exact path="/rooms" element={<Room />} />
-            <Route path="/rooms/:id" element={<roomDetail />} />
+            <Route path="/rooms/:id" element={<RoomDetail />} />
             <Route exact path="/reserve" />
             <Route exact path="/my-reservations" />
             <Route exact path="/add-room" />
