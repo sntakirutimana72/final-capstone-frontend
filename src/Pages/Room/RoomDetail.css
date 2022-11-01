@@ -8,27 +8,59 @@
 }
 
 .reserve-btn {
-  background-color: #92B811;
+  background-color: #92b811;
   color: #fff;
   padding: 12px;
-  width: 80%;
+  width: 50%;
   border-radius: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 8rem 1rem 0 auto;
 }
 
 .room-info {
   margin-top: 8%;
+  display: flex;
+  flex-direction: column;
 }
 
 .room-name {
   font-size: 2rem;
   font-weight: 600;
   text-align: right;
-  /* letter-spacing: 10px; */
+  margin-right: 1rem;
+  letter-spacing: 6px;
 }
 
 .room-desc {
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 400;
   text-align: right;
   margin-bottom: 2rem;
+  margin-right: 1rem;
+}
+
+.left-panel {
+  margin-right: 1rem;
+}
+
+.left-panel li {
+  padding: 0.6rem;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.left-panel li:nth-child(odd) {
+  background-color: #e2e3e5;
+}
+
+.font-icon {
+  background-color: #92b811;
+}
+
+.font-arrow {
+  background-color: #92b811;
 }
