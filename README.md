@@ -49,6 +49,11 @@ To run the tests for linters locally, you must have node installed on your compu
 - GitHub: [@aliatayee](https://github.com/aliatayee)
 - Twitter: [@aqaatayee](https://twitter.com/aqaatayee)
 
+👤 **Steve**
+
+- GitHub: [@sntakirutimana72](../../../)
+- LinkedIn: [steve-ntakirutimana](https://www.linkedin.com/in/steve-ntakirutimana/)
+
 
 ## 🤝 Contributing
 Contributions, issues, and feature requests are welcome!
