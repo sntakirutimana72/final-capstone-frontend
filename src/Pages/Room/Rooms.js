@@ -1,13 +1,13 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import Carousel from "nuka-carousel/lib/carousel";
-import { useTheme } from "@mui/material/styles";
-import useMediaQuery from "@mui/material/useMediaQuery";
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import { getRooms } from "../../Redux/roomsSlice";
-import Room from "./Room";
-import "./Carousel.css";
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import Carousel from 'nuka-carousel/lib/carousel';
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import { getRooms } from '../../Redux/roomsSlice';
+import Room from './Room';
+import './Carousel.css';
 
 function Rooms() {
   const dispatch = useDispatch();
@@ -18,8 +18,8 @@ function Rooms() {
   }, [dispatch]);
 
   const theme = useTheme();
-  const mediumUp = useMediaQuery(theme.breakpoints.up("md"));
-  const largeUp = useMediaQuery(theme.breakpoints.up("lg"));
+  const mediumUp = useMediaQuery(theme.breakpoints.up('md'));
+  const largeUp = useMediaQuery(theme.breakpoints.up('lg'));
 
   let slideToShow = 1;
   if (mediumUp) {
@@ -31,11 +31,11 @@ function Rooms() {
 
   let content;
 
-  if (loading === "pending") {
+  if (loading === 'pending') {
     content = <span>Loading</span>;
   }
 
-  if (loading === "idle") {
+  if (loading === 'idle') {
     content = data
       .slice(0)
       .reverse()
