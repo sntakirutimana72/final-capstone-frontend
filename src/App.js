@@ -24,16 +24,8 @@ const App = () => (
           </Route>
 
           <Route element={<UserRequiredRoute />}>
-            <Route exact path="/reservations/mine" element={<MyReserves />} />
+            <Route path="my-reservations" element={<MyReserves />} />
           </Route>
-
-          <Route exact path="/my-reservations" element={<MyReserves />} />
-          {/* <Route exact path="/" />
-          <Route exact path="/rooms" />
-          <Route exact path="/reserve" />
-
-          <Route exact path="/add-room" />
-          <Route exact path="/delete-room" /> */}
         </Routes>
       </section>
     </Router>

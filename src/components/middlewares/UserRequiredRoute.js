@@ -11,7 +11,7 @@ const UserRequiredRoute = ({ redirectPath, children }) => {
   );
 };
 
-UserRequiredRoute.defaultProps = { children: null, redirectPath: '/get-started' };
+UserRequiredRoute.defaultProps = { children: null, redirectPath: '/login' };
 UserRequiredRoute.propTypes = { children: PropTypes.node, redirectPath: PropTypes.string };
 
 export default UserRequiredRoute;

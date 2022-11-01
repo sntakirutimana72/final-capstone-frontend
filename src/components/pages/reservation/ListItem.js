@@ -1,28 +1,51 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import {
-  updateReservation, cancelReservation,
+  updateReservation,
+  cancelReservation,
 } from '../../../redux/features/reservations/mine';
+import {
+  cancelReserve,
+  updateReserve,
+} from '../../../apis/hotel_booking/v1/reservations';
 import { singleProps } from '../../../props/reserves';
-import { today } from '../../../helpers/utils';
+import Spinner from '../../common/Spinner';
 
 const ListItem = ({ item }) => {
   const [disable, setDisable] = useState(false);
+  const [updates, setUpdates] = useState({});
+  const [fromDate, setFromDate] = useState(item.from_date);
+  const [toDate, setToDate] = useState(item.to_date);
   const dispatch = useDispatch();
+
   const { room } = item;
 
   const handleCancel = () => {
     setDisable(true);
-    setTimeout(() => {
-      dispatch(cancelReservation(item.id));
-    }, 4000);
+    cancelReserve(item)
+      .then(() => dispatch(cancelReservation(item.id)))
+      .catch(() => setDisable(false));
   };
 
   const handleUpdate = () => {
+    if (!Object.keys(updates).length) return;
+
     setDisable(true);
-    setTimeout(() => {
-      dispatch(updateReservation({ ...item, to_date: today() }));
-    }, 4000);
+    updateReserve(item, { reservation: updates })
+      .then((updatedItem) => dispatch(updateReservation(updatedItem)))
+      .finally(() => setDisable(false));
+  };
+
+  const onFromDate = ({ target }) => {
+    const { value } = target;
+    setFromDate(value);
+    setUpdates((state) => ({ ...state, from_date: value }));
+  };
+
+  const onEndDate = ({ target }) => {
+    const { value } = target;
+    setToDate(value);
+    setUpdates((state) => ({ ...state, to_date: value }));
   };
 
   return (
@@ -38,9 +61,24 @@ const ListItem = ({ item }) => {
             <span>{room.name}</span>
             <span>{item.status}</span>
           </div>
-          <div className="flex justify-between p-2 px-3 bg-prime-g rounded-full shadow-md text-xs">
-            <span>{item.from_date}</span>
-            <span>{item.to_date}</span>
+          <div className="flex justify-between items-center gap-3 p-2 px-3 bg-prime-g rounded-full shadow-md">
+            <input
+              type="date"
+              name="from_date"
+              onChange={onFromDate}
+              value={fromDate}
+              disabled={disable}
+              className="appearance-none bg-inherit border-none p-0 text-xs"
+            />
+            <input
+              type="date"
+              name="to_date"
+              onChange={onEndDate}
+              value={toDate}
+              disabled={disable}
+              className="appearance-none bg-inherit border-none p-0 text-xs"
+            />
+            {disable && <Spinner classes="text-green-c4 h-4 w-4" />}
           </div>
         </div>
 

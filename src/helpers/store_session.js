@@ -5,3 +5,5 @@ export const storeSession = (session) => {
 };
 
 export const loadSession = () => JSON.parse(localStorage.getItem(key)) || {};
+
+export const getAuthToken = () => loadSession().token;
