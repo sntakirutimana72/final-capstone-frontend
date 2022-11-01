@@ -1,30 +1,21 @@
-// import { useEffect } from 'react';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-// import { useDispatch, useSelector } from 'react-redux';
 import Carousel from 'nuka-carousel/lib/carousel';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-// import { fetchData } from '../../Redux/roomsReducer';
 import Room from './Room';
 import './Carousel.css';
 
 const Rooms = () => {
   const [rooms, setRooms] = useState([]);
-  // const rooms = useSelector((state) => state.rooms);
-  // const dispatch = useDispatch();
 
   useEffect(() => {
     axios.get('http://localhost:3000/api/v1/rooms/').then((response) => {
       setRooms(response.data.rooms);
     });
   }, []);
-
-  // useEffect(() => {
-  //   dispatch(fetchData);
-  // });
 
   const theme = useTheme();
   const mediumUp = useMediaQuery(theme.breakpoints.up('md'));
