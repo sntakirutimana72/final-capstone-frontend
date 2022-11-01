@@ -4,11 +4,16 @@
 /node_modules
 /.pnp
 .pnp.js
+package-lock.json
 
 # testing
 /coverage
 # production
 /build
+
+# editor temp files
+/.vscode
+/.idea
 
 # misc
 .DS_Store
