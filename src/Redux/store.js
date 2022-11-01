@@ -1,5 +1,5 @@
-import { configureStore } from "@reduxjs/toolkit";
-import roomsReducer from "./roomsSlice";
+import { configureStore } from '@reduxjs/toolkit';
+import roomsReducer from './roomsSlice';
 
 export default configureStore({
   reducer: {

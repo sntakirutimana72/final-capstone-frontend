@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
 import Carousel from "nuka-carousel/lib/carousel";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
@@ -10,21 +9,13 @@ import { getRooms } from "../../Redux/roomsSlice";
 import Room from "./Room";
 import "./Carousel.css";
 
-const Rooms = () => {
+function Rooms() {
   const dispatch = useDispatch();
   const { data, loading, error } = useSelector((state) => state.rooms);
 
   useEffect(() => {
     dispatch(getRooms());
   }, [dispatch]);
-
-  // const [rooms, setRooms] = useState([]);
-
-  // useEffect(() => {
-  //   axios.get('http://localhost:3000/api/v1/rooms/').then((response) => {
-  //     setRooms(response.data.rooms);
-  //   });
-  // }, []);
 
   const theme = useTheme();
   const mediumUp = useMediaQuery(theme.breakpoints.up("md"));
@@ -45,56 +36,45 @@ const Rooms = () => {
   }
 
   if (loading === "idle") {
-    content = data.map((item) => {
-      return <Room room={item} />;
-    });
+    content = data
+      .slice(0)
+      .reverse()
+      .map((item) => <Room room={item} key={item.id} />);
   }
 
   if (error != null) {
     content = <span>{error}</span>;
   }
 
-  return <div>{content}</div>;
-
-  // return (
-  //   <>
-  //     <h2 className="text-[30px]  text-center mt-10 uppercase">
-  //       <strong>Our Rooms</strong>
-  //     </h2>
-  //     <p className="text-[18px] text-center mb-5 text-zinc-500">
-  //       Please select a room from below list to reserve
-  //     </p>
-  //     <div>
-  //       <Carousel
-  //         renderCenterLeftControls={({ previousSlide }) => (
-  //           <button type="button" onClick={previousSlide}>
-  //             <ChevronLeftIcon />
-  //           </button>
-  //         )}
-  //         renderCenterRightControls={({ nextSlide }) => (
-  //           <button type="button" onClick={nextSlide}>
-  //             <ChevronRightIcon />
-  //           </button>
-  //         )}
-  //         wrapAround
-  //         slidesToShow={slideToShow}
-  //         renderBottomCenterControls={false}
-  //       >
-  //         {rooms
-  //           .slice(0)
-  //           .reverse()
-  //           .map((room) => (
-  //             <Room
-  //               key={room.id}
-  //               picture={room.picture}
-  //               name={room.name}
-  //               description={room.description}
-  //             />
-  //           ))}
-  //       </Carousel>
-  //     </div>
-  //   </>
-  // );
-};
+  return (
+    <>
+      <h2 className="text-[30px]  text-center mt-10 uppercase">
+        <strong>Our Rooms</strong>
+      </h2>
+      <p className="text-[18px] text-center mb-5 text-zinc-500">
+        Please select a room from below list to reserve
+      </p>
+      <div>
+        <Carousel
+          renderCenterLeftControls={({ previousSlide }) => (
+            <button type="button" onClick={previousSlide}>
+              <ChevronLeftIcon />
+            </button>
+          )}
+          renderCenterRightControls={({ nextSlide }) => (
+            <button type="button" onClick={nextSlide}>
+              <ChevronRightIcon />
+            </button>
+          )}
+          wrapAround
+          slidesToShow={slideToShow}
+          renderBottomCenterControls={false}
+        >
+          {content}
+        </Carousel>
+      </div>
+    </>
+  );
+}
 
 export default Rooms;

@@ -1,11 +1,11 @@
 /* eslint-disable react/prop-types */
-import React from "react";
-import { NavLink } from "react-router-dom";
-import { FaFacebookF, FaTwitter, FaInstagram } from "react-icons/fa";
-import "./style.css";
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+import { FaFacebookF, FaTwitter, FaInstagram } from 'react-icons/fa';
+import './style.css';
 
 const Room = ({ room }) => (
-  <NavLink key={room.id} to={`/room/${room.id}`} className="link">
+  <NavLink to={`/room/${room.id}`} className="link">
     <div className="room-card">
       <div className="room-image-container">
         <img src={room.picture} alt={room.name} className="room-image" />
