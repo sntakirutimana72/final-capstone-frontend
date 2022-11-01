@@ -1,0 +1,34 @@
+.room-img {
+  width: 40%;
+  height: 40%;
+  margin-top: 20vh;
+  margin-left: 10vw;
+  margin-right: 4vw;
+  display: block;
+}
+
+.reserve-btn {
+  background-color: #92B811;
+  color: #fff;
+  padding: 12px;
+  width: 80%;
+  border-radius: 20px;
+}
+
+.room-info {
+  margin-top: 8%;
+}
+
+.room-name {
+  font-size: 2rem;
+  font-weight: 600;
+  text-align: right;
+  /* letter-spacing: 10px; */
+}
+
+.room-desc {
+  font-size: 1rem;
+  font-weight: 400;
+  text-align: right;
+  margin-bottom: 2rem;
+}

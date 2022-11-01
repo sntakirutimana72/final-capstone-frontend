@@ -4,7 +4,7 @@ import {
   Signin, Register, PasswordReset, NewPassword,
 } from './Components/authentication';
 import SideNav from './Components/SideNav/SideNav';
-import RoomDetail from './Pages/Room/roomDetail';
+import RoomDetail from './Pages/Room/RoomDetail';
 import Room from './Pages/Room/Room';
 
 function App() {
