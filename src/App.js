@@ -1,11 +1,11 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { SignedInRoute } from './Components/middlewares';
+import { SignedInRoute } from './components/middlewares';
 import {
   Signin,
   Register,
   PasswordReset,
   NewPassword,
-} from './Components/authentication';
+} from './components/authentication';
 import SideNav from './Components/SideNav/SideNav';
 import Rooms from './Pages/Room/Rooms';
 
