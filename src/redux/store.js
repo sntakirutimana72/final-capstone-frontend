@@ -1,4 +1,4 @@
-const BASE_URL = 'http://127.0.0.1:3000/';
+const BASE_URL = 'http://127.0.0.1:3001/';
 const CREATE = 'room-app/room/CREATE';
 
 export const addRoom = (room) => ({

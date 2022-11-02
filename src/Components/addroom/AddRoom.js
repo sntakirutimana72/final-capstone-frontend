@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import classes from './AddRoom.module.css';
 import { createRoom } from '../../redux/store';
 
@@ -15,6 +16,8 @@ export default function AddRoom() {
   });
 
   const dispatch = useDispatch();
+
+  const navigate = useNavigate();
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -36,6 +39,7 @@ export default function AddRoom() {
       room_type_id: event.target.elements.room_type_id.value,
     };
     dispatch(createRoom(room));
+    navigate("/room-index");
   };
 
   return (
