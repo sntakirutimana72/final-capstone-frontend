@@ -27,16 +27,15 @@ export default function AddRoom() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const room = {
-      name: event.target.elements['name'].value,
-      picture: event.target.elements['picture'].value,
-      number_of_beds: event.target.elements['number_of_beds'].value,
-      price: event.target.elements['price'].value,
-      description: event.target.elements['description'].value,
-      user_id: event.target.elements['user_id'].value,
-      room_type_id: event.target.elements['room_type_id'].value,
-    }
+      name: event.target.elements.name.value,
+      picture: event.target.elements.picture.value,
+      number_of_beds: event.target.elements.number_of_beds.value,
+      price: event.target.elements.price.value,
+      description: event.target.elements.description.value,
+      user_id: event.target.elements.user_id.value,
+      room_type_id: event.target.elements.room_type_id.value,
+    };
     dispatch(createRoom(room));
-    
   };
 
   return (
