@@ -1,6 +1,5 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import SideNav from './Components/SideNav/SideNav';
-import AddReservatons from './Components/Reservation/AddReservations';
+import ReserveForm from './Components/pages/add-reservation';
 import { SignedInRoute, UserRequiredRoute } from './Components/middlewares';
 import {
   Register,
@@ -12,30 +11,27 @@ import MyReserves from './Components/pages/reservation';
 import SideNav from './Components/navigation/SideNav';
 import SessionCtxProvider from './contexts/session';
 
-const App = () => {
-  return (
-    <SessionCtxProvider>
-      <Router>
+const App = () => (
+  <SessionCtxProvider>
+    <Router>
+      <section className="w-full flex h-scree">
         <SideNav />
-        <section className="w-full flex h-scree">
-          <Routes>
-            <Route element={<SignedInRoute />}>
-              <Route path="login" element={<Signin />} />
-              <Route path="register" element={<Register />} />
-              <Route path="set-new-password" element={<NewPassword />} />
-              <Route path="reset-password" element={<PasswordReset />} />
-            </Route>
-          </Routes>
-
+        <Routes>
+          <Route element={<SignedInRoute />}>
+            <Route path="login" element={<Signin />} />
+            <Route path="register" element={<Register />} />
+            <Route path="set-new-password" element={<NewPassword />} />
+            <Route path="reset-password" element={<PasswordReset />} />
+          </Route>
           <Route element={<UserRequiredRoute />}>
             <Route exact path="/reservations/mine" element={<MyReserves />} />
-            <Route exact path="/reserve" element={<AddReservatons />} />
+            <Route exact path="/reserve" element={<ReserveForm />} />
           </Route>
           <Route exact path="/my-reservations" element={<MyReserves />} />
-        </section>
-      </Router>
-    </SessionCtxProvider>
-  )
-};
+        </Routes>
+      </section>
+    </Router>
+  </SessionCtxProvider>
+);
 
 export default App;
