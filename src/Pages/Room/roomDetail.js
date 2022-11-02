@@ -8,7 +8,6 @@ import { faCircleChevronRight } from '@fortawesome/free-solid-svg-icons';
 
 const RoomDetail = () => {
   const [roomDetail, setRoomDetail] = useState([]);
-  // const [message, setMessage] = useState({});
   const { id } = useParams();
 
   useEffect(() => {
