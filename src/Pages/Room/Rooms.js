@@ -22,11 +22,16 @@ function Rooms() {
   const largeUp = useMediaQuery(theme.breakpoints.up('lg'));
 
   let slideToShow = 1;
+
   if (mediumUp) {
     slideToShow = 2;
   }
   if (largeUp) {
     slideToShow = 3;
+  }
+
+  if (slideToShow >= data.length) {
+    slideToShow = data.length;
   }
 
   let content;
