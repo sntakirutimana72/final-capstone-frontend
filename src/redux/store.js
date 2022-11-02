@@ -1,43 +1,83 @@
-// import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
-// const initialState = [];
 
-// export const bookInfo = createSlice({
-//   name: 'pages',
-//   initialState,
-//   reducers: {
-//     books(state, action) {
-//       const details = action.payload.map((room) => ({
-//         name: room.name,
-//         number_of_beds: room.number_of_beds,
-//         picture: room.picture,
-//         description: room.description,
-//         price: room.price,
-//       }));
-//       return details;
-//     },
+const initialState = [];
+const BASE_URL = 'http://127.0.0.1:3001/'
+const CREATE = 'room-app/room/CREATE';
 
-//   },
-// });
+export const addRoom = (room) => ({
+  type: CREATE, room,
+});
 
-// export const pageActions = bookInfo.actions;
+export const createRoom = (room) => async (dispatch) => {
+  await fetch(`${BASE_URL}${'rooms'}`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(room),
+  }).then(() => dispatch(fetchRooms()));
+};
 
-// const addBookEndpoint = 'http://localhost:3000/add_book';
 
-// const options = {
-//   method: 'POST',
-//   headers: {
-//     'Content-Type': 'application/json',
-//   },
-//   body: JSON.stringify({
-//     name: 'Test Title',
-//     number_of_beds: '',
-//     picture: 'Test Author',
-//     price: '',
-//     description: '',
-//   }),
-// };
+export const fetchRooms = () => (dispatch) => {
+  fetch(`${BASE_URL}${"rooms"}`)
+    .then((response) => response.json())
+    .then((data) => dispatch(addRoom(data)));
+};
 
-// const response = await fetch(addBookEndpoint, options);
-// const jsonResponse = await response.json();
+const roomsReducer = (state = {}, action = {}) => {
+  switch (action.type) {
+    case CREATE:
+     
+      return action.room;
+    default:
+      return state;
+  }
+};
+
+export default roomsReducer;
+
+/*
+export const roomInfo = createSlice({
+  name: 'rooms',
+  initialState,
+  reducers: {
+    rooms(state, action) {
+      const details = action.payload.map((room) => ({
+        name: room.name,
+        number_of_beds: room.number_of_beds,
+        picture: room.picture,
+        description: room.description,
+        price: room.price,
+        user_id: room.user_id,
+        room_type_id: room.room_type_id,
+      }));
+      return details;
+    },
+
+  },
+});
+
+export const pageActions = roomInfo.actions;
+
+const addRoomEndpoint = 'http://localhost:3000/rooms';
+
+const options = {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({
+    name: name,
+    number_of_beds: number_of_beds,
+    picture: picture,
+    price: price,
+    description: description,
+    user_id: user_id,
+    room_type_id: room_type_id,
+  }),
+};
+
+const response = await fetch(addRoomEndpoint, options);
+const jsonResponse = await response.json();
 // console.log(jsonResponse);
+*/

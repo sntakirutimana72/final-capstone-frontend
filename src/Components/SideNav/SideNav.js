@@ -24,7 +24,7 @@ const SideNav = () => {
   const links = [
     {
       id: 1,
-      path: '/rooms',
+      path: '/room-index',
       text: 'ROOMS',
     },
     {
@@ -39,7 +39,7 @@ const SideNav = () => {
     },
     {
       id: 4,
-      path: '/add-room',
+      path: '/rooms',
       text: 'Add Room',
     },
 

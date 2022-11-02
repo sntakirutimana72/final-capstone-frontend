@@ -1,7 +1,7 @@
-// import { configureStore } from '@reduxjs/toolkit';
-// import { bookInfo } from './store';
+import { configureStore } from '@reduxjs/toolkit';
+import roomsReducer from './store';
 
-// const store = configureStore({
-//   reducer: { room: bookInfo.reducer },
-// });
-// export default store;
+const reducer = { rooms: roomsReducer, };
+
+const store = configureStore({ reducer });
+export default store;

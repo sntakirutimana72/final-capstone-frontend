@@ -21,10 +21,10 @@ function App() {
               <Route path="reset-password" element={<PasswordReset />} />
             </Route>
             <Route exact path="/" />
-            <Route exact path="/rooms" element={<Room />} />
+            <Route exact path="/rooms-index" element={<Room />} />
             <Route exact path="/reserve" />
             <Route exact path="/my-reservations" />
-            <Route exact path="/add-room" element={<AddRoom />} />
+            <Route exact path="/rooms" element={<AddRoom />} />
             <Route exact path="/delete-room" />
           </Routes>
         </main>
