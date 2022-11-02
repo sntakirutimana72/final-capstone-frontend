@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import classes from './AddRoom.module.css';
 import { createRoom } from '../../redux/store';
 
@@ -11,9 +12,17 @@ export default function AddRoom() {
     number_of_beds: '',
     price: '',
     description: '',
-    user_id: '',
     room_type_id: '',
   });
+
+  const [roomType, setRoomType] = useState([]);
+  const [selectedOption, setSelectedOption] = useState(roomType[0]);
+
+  useEffect(() => {
+    axios.get('http://localhost:3001/rooms_types').then((response) => {
+      setRoomType(response.data.rooms_types);
+    });
+  }, []);
 
   const dispatch = useDispatch();
 
@@ -27,6 +36,10 @@ export default function AddRoom() {
     }));
   };
 
+
+
+
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const room = {
@@ -35,33 +48,24 @@ export default function AddRoom() {
       number_of_beds: event.target.elements.number_of_beds.value,
       price: event.target.elements.price.value,
       description: event.target.elements.description.value,
-      user_id: event.target.elements.user_id.value,
       room_type_id: event.target.elements.room_type_id.value,
     };
     dispatch(createRoom(room));
-    navigate("/room-index");
+    navigate('/room-index');
   };
 
   return (
     <div className={classes.add_book_dev}>
       <form onSubmit={handleSubmit}>
         <div className={classes.form}>
-          <label htmlFor="user_id">User Id</label>
-          <input
-            type="text"
-            name="user_id"
-            value={state.user_id}
-            onChange={handleInputChange}
-          />
-        </div>
-        <div className={classes.form}>
-          <label htmlFor="room_type_id">Room Type Id</label>
-          <input
-            type="text"
-            name="room_type_id"
-            value={state.room_type_id}
-            onChange={handleInputChange}
-          />
+          <label htmlFor="room_type_id">Room Type</label>
+          <select value={selectedOption} onChange={(e) => setSelectedOption(e.target.value)}>
+            {roomType.map((item) => (
+              <option key={item.id} value={item.id}>
+                {item.name}
+              </option>
+            ))}
+          </select>
         </div>
         <div className={classes.form}>
           <label htmlFor="picture">Picture</label>

@@ -14,7 +14,7 @@ export const createRoom = (room) => async (dispatch) => {
 };
 
 export const fetchRooms = () => (dispatch) => {
-  fetch(`${BASE_URL}${"rooms"}`)
+  fetch(`${BASE_URL}${'rooms'}`)
     .then((response) => response.json())
     .then((data) => dispatch(addRoom(data)));
 };
