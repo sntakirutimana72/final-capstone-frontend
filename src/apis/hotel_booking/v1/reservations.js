@@ -14,7 +14,7 @@ export const createReservation = (data) => postCurl(
 ).then(async (response) => {
   const res = await response.json();
   if (!response.ok) throw new Error(res.error);
-  return res.data;
+  return res;
 }).catch(
   () => { },
 );
