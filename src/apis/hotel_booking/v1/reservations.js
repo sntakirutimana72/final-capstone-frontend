@@ -4,30 +4,40 @@ import {
   deleteCurl,
   postCurl,
 } from './curl';
+import { getAuthToken } from '../../../helpers/store_session';
 
 export const baseUrl = 'http://localhost:3001/api/v1/reservations';
 
-export const getOnlyMine = () => getCurl(`${baseUrl}/mine`, '<AUTH_TOKEN>');
+export const getOnlyMine = async () => {
+  const response = await getCurl(`${baseUrl}/mine`, getAuthToken());
+  if (!response.ok) throw new Error('');
+  return response.json();
+};
 
-export const createReservation = (data) => postCurl(
-  `${baseUrl}`, '<AUTH_TOKEN>', data,
-).then(async (response) => {
-  const res = await response.json();
-  if (!response.ok) throw new Error(res.error);
-  return res;
-}).catch(
-  () => { },
-);
-export const updateReservation = (id, dates) => patchCurl(
-  `${baseUrl}/${id}`, '<AUTH_TOKEN>', dates,
-).then(async (response) => {
-  const res = await response.json();
-  if (!response.ok) throw new Error(res.error);
-  return res.reservation;
-}).catch(
-  () => { },
-);
+export const createReservation = (data) => new Promise((resolve, reject) => {
+  postCurl(`${baseUrl}`, getAuthToken(), data)
+    .then((response) => {
+      if (!response.ok) reject();
+      return response.json();
+    })
+    .then(({ reservation }) => resolve(reservation))
+    .catch(() => reject());
+});
 
-export const cancelReservation = (id) => deleteCurl(`${baseUrl}/${id}`, '<AUTH_TOKEN>')
-  .then((response) => response.status === 200)
-  .catch(() => { });
+export const updateReserve = ({ id }, dates) => new Promise((resolve, reject) => {
+  patchCurl(`${baseUrl}/${id}`, getAuthToken(), dates)
+    .then((response) => {
+      if (!response.ok) reject();
+      return response.json();
+    })
+    .then(({ reservation }) => resolve(reservation))
+    .catch(() => reject());
+});
+
+export const cancelReserve = ({ id }) => new Promise((resolve, reject) => {
+  deleteCurl(`${baseUrl}/${id}`, getAuthToken())
+    .then((response) => {
+      if (response.ok) resolve();
+      reject();
+    }).catch(() => reject());
+});

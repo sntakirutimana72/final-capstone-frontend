@@ -11,54 +11,12 @@ import {
 
 const name = 'reservations/mine';
 const addReserve = 'reservations/AddReserve';
-export const fetchOnlyMine = createAsyncThunk(name, getOnlyMine());
-export const addNewReserve = createAsyncThunk(addReserve, async (data, token) => {
-  createReservation(data, token);
-});
+export const fetchOnlyMine = createAsyncThunk(name, getOnlyMine);
+export const addNewReserve = createAsyncThunk(addReserve, async (data) => createReservation(data));
 const initialState = {
-  status: 'fulfilled',
-  analytics: [2, 1, 1, 0],
-  reservations: [
-    {
-      id: 1,
-      from_date: '2022-10-28',
-      to_date: '2022-10-30',
-      status: 'Pending',
-      room: {
-        name: 'RMGT-05',
-        number_of_beds: 1,
-        price: '129.75',
-        type: 'single',
-        description: 'A high class room with a wonderful view and access to the roof',
-        accomodations: [
-          'internet',
-          'lunch',
-          'dinner',
-          'breakfast',
-          'garden',
-          'transport',
-        ],
-      },
-    },
-    {
-      id: 2,
-      from_date: '2022-09-18',
-      to_date: '2022-10-30',
-      status: 'Confirmed',
-      room: {
-        name: 'RMGT-02',
-        number_of_beds: 2,
-        price: '179.0',
-        type: 'couple',
-        description: 'A high class room with a wonderful view and access to the roof',
-        accomodations: [
-          'internet',
-          'lunch',
-          'dinner',
-        ],
-      },
-    },
-  ],
+  status: 'idle',
+  analytics: [0, 0, 0, 0],
+  reservations: null,
   visibilityFilter: visibilityFilters.ALL,
 };
 const slice = createSlice({

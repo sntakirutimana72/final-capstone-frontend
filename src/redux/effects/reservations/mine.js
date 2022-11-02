@@ -61,11 +61,7 @@ export const afterUpdate = (state, { payload }) => ({
   ),
 });
 
-export const onPending = (state) => (
-  {
-    ...state, status: 'on', error: null, reservations: null,
-  }
-);
+export const onPending = (state) => ({ ...state, status: 'on' });
 
 export const onRejected = (state, { payload }) => (
   {
@@ -73,4 +69,6 @@ export const onRejected = (state, { payload }) => (
   }
 );
 
-export const onFulfilled = (state, { payload }) => ({ ...state, ...analyzeItems(payload), status: 'off' });
+export const onFulfilled = (state, { payload }) => ({
+  ...state, ...analyzeItems({ reservations: payload }), status: 'off',
+});
