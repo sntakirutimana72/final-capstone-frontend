@@ -36,7 +36,9 @@ export default function AddRoom() {
     }));
   };
 
-
+  // const [accs, setAccs] = useState([])
+  //  const onCheck = ({ target }) => {//update accs}
+  //   accomodations: accs
 
 
 
@@ -59,7 +61,11 @@ export default function AddRoom() {
       <form onSubmit={handleSubmit}>
         <div className={classes.form}>
           <label htmlFor="room_type_id">Room Type</label>
-          <select value={selectedOption} onChange={(e) => setSelectedOption(e.target.value)}>
+          <select
+            className={classes.select}
+            value={selectedOption}
+            onChange={(e) => setSelectedOption(e.target.value)}
+          >
             {roomType.map((item) => (
               <option key={item.id} value={item.id}>
                 {item.name}
@@ -70,6 +76,7 @@ export default function AddRoom() {
         <div className={classes.form}>
           <label htmlFor="picture">Picture</label>
           <input
+            className={classes.select}
             type="text"
             name="picture"
             value={state.picture}
@@ -79,6 +86,7 @@ export default function AddRoom() {
         <div className={classes.form}>
           <label htmlFor="name">Name</label>
           <input
+            className={classes.select}
             type="text"
             name="name"
             value={state.name}
@@ -88,6 +96,7 @@ export default function AddRoom() {
         <div className={classes.form}>
           <label htmlFor="number_of_beds">Number of Beds</label>
           <input
+            className={classes.select}
             type="text"
             name="number_of_beds"
             value={state.number_of_beds}
@@ -97,6 +106,7 @@ export default function AddRoom() {
         <div className={classes.form}>
           <label htmlFor="price">Price</label>
           <input
+            className={classes.select}
             type="text"
             name="price"
             value={state.price}
@@ -106,6 +116,7 @@ export default function AddRoom() {
         <div className={classes.form}>
           <label htmlFor="description">Description</label>
           <input
+            className={classes.select}
             type="text"
             name="description"
             value={state.description}

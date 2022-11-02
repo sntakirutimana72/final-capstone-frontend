@@ -19,6 +19,10 @@
   align-content: center;
 }
 
+.select {
+  width: 47%;
+}
+
 .button {
   width: 110px;
   height: 40px;
