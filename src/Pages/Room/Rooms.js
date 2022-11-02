@@ -5,7 +5,7 @@ import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import { getRooms } from '../../Redux/roomsSlice';
+import { getRooms } from '../../redux/roomsSlice';
 import Room from './Room';
 import './Carousel.css';
 
