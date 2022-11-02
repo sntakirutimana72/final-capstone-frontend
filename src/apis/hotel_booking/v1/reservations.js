@@ -6,7 +6,7 @@ import {
 } from './curl';
 import { getAuthToken } from '../../../helpers/store_session';
 
-export const baseUrl = 'http://localhost:3001/api/v1/reservations';
+export const baseUrl = 'http://localhost:3001/reservations';
 
 export const getOnlyMine = async () => {
   const response = await getCurl(`${baseUrl}/mine`, getAuthToken());
