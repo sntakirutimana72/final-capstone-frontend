@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import './RoomDetail.css';
@@ -18,18 +18,10 @@ const RoomDetail = () => {
       });
   }, []);
 
-  const reserve = () => {
-    useEffect(() => {
-      axios.post(`http://localhost:3000/api/v1/rooms/${id}/reservations`, {
-        body: JSON.stringify({
-          room_id: roomDetail.id,
-          user_id: roomDetail.user_id,
-        }),
-        // .then((response) => {
-        //   setMessage(response.data);
-        // }),
-      });
-    }, []);
+  const nav = useNavigate();
+  const changeRoute = () => {
+    const path = `/reserve/${id}`;
+    nav(path);
   };
 
   return (
@@ -73,7 +65,7 @@ const RoomDetail = () => {
             </span>
           </li>
         </ul>
-        <button className="reserve-btn" type="submit" onClick={reserve}>
+        <button className="reserve-btn" type="submit" onClick={changeRoute}>
           <FontAwesomeIcon className="font-calendar" icon={faCalendarCheck} />
           <span>
             Reserve
