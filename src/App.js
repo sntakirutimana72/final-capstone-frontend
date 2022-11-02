@@ -10,6 +10,7 @@ import {
 import MyReserves from './Components/pages/reservation';
 import SideNav from './Components/navigation/SideNav';
 import SessionCtxProvider from './contexts/session';
+import Rooms from './Pages/Room/Rooms';
 
 const App = () => (
   <SessionCtxProvider>
@@ -26,6 +27,7 @@ const App = () => (
           <Route element={<UserRequiredRoute />}>
             <Route exact path="/reservations/mine" element={<MyReserves />} />
             <Route exact path="/reserve" element={<ReserveForm />} />
+            <Route exact path="/rooms" element={<Rooms />} />
           </Route>
           <Route exact path="/my-reservations" element={<MyReserves />} />
         </Routes>
