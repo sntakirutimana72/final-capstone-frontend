@@ -1,9 +1,10 @@
 /* eslint-disable */
 import React from 'react';
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useState, useEffect } from 'react';
+import { useDispatch,  useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { addNewReserve } from '../../../redux/features/reservations/mine';
+import { fetchRoomList } from '../../../redux/features/reservations/mine';
 
 function ReserveForm() {
     const dispatch = useDispatch();
@@ -26,10 +27,9 @@ function ReserveForm() {
             room_id,
         };
         dispatch(addNewReserve(obj));
-        setFrom_date('');
-        setTo_date('');
-        setRoom_id(0);
+        navigate('/my-reservations')
     }
+
     return (
         <>
             <div className="flex w-full justify-center pt-10">
