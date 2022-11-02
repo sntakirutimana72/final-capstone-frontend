@@ -20,7 +20,7 @@ const RoomDetail = () => {
 
   const reserve = () => {
     useEffect(() => {
-      axios.post(`http://localhost:3000/api/v1/rooms/${id}/reserve`, {
+      axios.post(`http://localhost:3000/api/v1/rooms/${id}/reservations`, {
         body: JSON.stringify({
           room_id: roomDetail.id,
           user_id: roomDetail.user_id,
