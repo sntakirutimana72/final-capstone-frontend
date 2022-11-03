@@ -1,8 +1,13 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
+import AuthTokenStore from '../helpers/store_session';
+
+const config = {
+  headers: { Authorization: AuthTokenStore.fetch(), }
+};
 
 export const getRoomsList = createAsyncThunk('roomsList/getRoomsList', async () => {
-  const response = await axios.get('http://127.0.0.1:3000//api/v1/room-list');
+  const response = await axios.get('http://127.0.0.1:3000//api/v1/room-list', config);
   return response.data.rooms;
 });
 
