@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { getOnlyMine } from '../../../apis/hotel_booking/v1/reservations';
+import { getOnlyMine } from '../../../apis/v1/reservations';
 import {
   onPending,
   onRejected,

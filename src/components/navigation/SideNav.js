@@ -1,5 +1,4 @@
-import * as React from 'react';
-import { NavLink } from 'react-router-dom';
+import React from 'react';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
@@ -9,7 +8,8 @@ import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import ListItem from '@mui/material/ListItem';
+import SideDrawer from './SideDrawer';
+import { AdminProtectedNode } from '../middlewares';
 
 const DrawerHeader = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -19,37 +19,45 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   ...theme.mixins.toolbar,
   justifyContent: 'center',
 }));
+const anyUsersPaths = [
+  {
+    id: 1,
+    path: '/rooms',
+    name: 'ROOMS',
+  },
+  {
+    id: 2,
+    path: '/reserve',
+    name: 'Reserve Form',
+  },
+  {
+    id: 3,
+    path: '/my-reservations',
+    name: 'My Reservations',
+  },
+];
+const adminsPaths = [
+  {
+    id: 4,
+    path: '/add-room',
+    name: 'Add Room',
+  },
+
+  {
+    id: 5,
+    path: '/delete-room',
+    name: 'Delete Room',
+  },
+];
+const otherPaths = [
+  {
+    id: 6,
+    path: '/logout',
+    name: 'Logout',
+  },
+];
 
 const SideNav = () => {
-  const links = [
-    {
-      id: 1,
-      path: '/rooms',
-      text: 'ROOMS',
-    },
-    {
-      id: 2,
-      path: '/reserve',
-      text: 'Reserve Form',
-    },
-    {
-      id: 3,
-      path: '/my-reservations',
-      text: 'My Reservations',
-    },
-    {
-      id: 4,
-      path: '/add-room',
-      text: 'Add Room',
-    },
-
-    {
-      id: 5,
-      path: '/delete-room',
-      text: 'Delete Room',
-    },
-
-  ];
   const [open, setOpen] = React.useState(true);
   const [drawerWidth, setDrawerWidth] = React.useState(240);
   const handleDrawerOpen = () => {
@@ -83,11 +91,11 @@ const SideNav = () => {
         </DrawerHeader>
         <Divider />
         <List>
-          {links.map((link) => (
-            <ListItem button component={NavLink} to={link.path} key={link.path} className="h-16 font-bold text-lg menuItem">
-              {link.text}
-            </ListItem>
-          ))}
+          <SideDrawer paths={anyUsersPaths} />
+          <AdminProtectedNode>
+            <SideDrawer paths={adminsPaths} />
+          </AdminProtectedNode>
+          <SideDrawer paths={otherPaths} />
         </List>
       </Drawer>
       <IconButton onClick={open ? handleDrawerClose : handleDrawerOpen} className={open ? 'nav__button open' : 'nav__button close'}>

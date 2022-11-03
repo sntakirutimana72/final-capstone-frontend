@@ -1,14 +1,15 @@
-import { Navigate, Outlet } from 'react-router-dom';
+import { Navigate, Outlet, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { getSession } from '../../contexts/session';
+import { useSession } from '../../contexts/session';
 
 const UserRequiredRoute = ({ redirectPath, children }) => {
-  const { session } = getSession();
-  return (
-    !session.isAuthenticated
-      ? <Navigate to={redirectPath} replace />
-      : (children || <Outlet />)
-  );
+  const { pathname } = useLocation();
+  const { session } = useSession();
+
+  if (!session.isAuthenticated) {
+    return <Navigate to={redirectPath} state={pathname} replace />;
+  }
+  return children || <Outlet />;
 };
 
 UserRequiredRoute.defaultProps = { children: null, redirectPath: '/login' };

@@ -11,7 +11,7 @@ const Listview = ({ items }) => (
         </div>
       ) : (
         <div>
-          <div className="flex flex-wrap justify-center sm:justify-start gap-4 mt-2">
+          <div className="flex flex-wrap justify-center gap-4 mt-2">
             {items.map((item) => <ListItem key={item.id} item={item} />)}
           </div>
         </div>

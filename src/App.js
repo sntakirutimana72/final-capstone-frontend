@@ -1,35 +1,45 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { SignedInRoute, UserRequiredRoute } from './components/middlewares';
 import {
-  Register,
-  Signin,
-  PasswordReset,
-  NewPassword,
+  SignedInRoute,
+  UserRequiredRoute,
+  ProtectedNode,
+  AdminRoute,
+} from './components/middlewares';
+import {
+  Register, Signin, Logout,
 } from './components/pages/authentication';
 import MyReserves from './components/pages/reservation';
 import SideNav from './components/navigation/SideNav';
-import SessionCtxProvider from './contexts/session';
+import SessionProvider from './contexts/session';
 
 const App = () => (
-  <SessionCtxProvider>
+  <SessionProvider>
     <Router>
-      <SideNav />
+      <ProtectedNode>
+        <SideNav />
+      </ProtectedNode>
       <section className="w-full">
         <Routes>
           <Route element={<SignedInRoute />}>
             <Route path="login" element={<Signin />} />
             <Route path="register" element={<Register />} />
-            <Route path="set-new-password" element={<NewPassword />} />
-            <Route path="reset-password" element={<PasswordReset />} />
           </Route>
 
           <Route element={<UserRequiredRoute />}>
+            <Route exact path="" element={<h1>Homepage</h1>} />
+            <Route path="logout" element={<Logout />} />
             <Route path="my-reservations" element={<MyReserves />} />
+            {/* All routes that require login go in here */}
+          </Route>
+
+          <Route element={<AdminRoute />}>
+            <Route path="add-room" element={<></>} />
+            <Route path="delete-room" element={<></>} />
           </Route>
         </Routes>
       </section>
     </Router>
-  </SessionCtxProvider>
+  </SessionProvider>
 );
 
 export default App;

@@ -15,7 +15,7 @@ module.exports = {
         'green-c4': 'rgb(153, 212, 97)',
       },
       boxShadow: {
-        '1bs': '0 1px 6px rgba(0, 0, 0, 0.1)',
+        '1bs': '0 2px 6px rgba(0, 0, 0, 0.1)',
       },
     },
   },

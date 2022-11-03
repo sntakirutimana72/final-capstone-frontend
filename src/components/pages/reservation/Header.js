@@ -1,8 +1,6 @@
 const Header = () => (
-  <div>
-    <div className="flex justify-between items-center">
-      <h1 className="text-xl">My Reservations</h1>
-    </div>
+  <div className="mb-9">
+    <h1 className="text-3xl">My Reservations</h1>
   </div>
 );
 

@@ -1,14 +1,16 @@
-import { Navigate, Outlet } from 'react-router-dom';
+import { Navigate, Outlet, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { getSession } from '../../contexts/session';
+import { useSession } from '../../contexts/session';
 
 const SignedInRoute = ({ redirectPath, children }) => {
-  const { session } = getSession();
-  return (
-    session.isAuthenticated
-      ? <Navigate to={redirectPath} replace />
-      : (children || <Outlet />)
-  );
+  let { state } = useLocation();
+  const { session } = useSession();
+
+  if (session.isAuthenticated) {
+    if (state === '/logout') state = null;
+    return <Navigate to={state || redirectPath} replace />;
+  }
+  return children || <Outlet />;
 };
 
 SignedInRoute.defaultProps = { children: null, redirectPath: '/' };
