@@ -14,12 +14,14 @@
   },
   "extends": [
     "airbnb",
-    "plugin:react/recommended"
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended"
   ],
   "plugins": [
     "react"
   ],
   "rules": {
+    "no-use-before-define": ["error", {"functions": false, "classes": false}],
     "jsx-a11y/label-has-associated-control": [ "error", {
       "required": {
         "some": [ "nesting", "id"  ]
@@ -37,6 +39,7 @@
     "react/react-in-jsx-scope": "off",
     "import/no-unresolved": "off",
     "no-shadow": "off",
+    "no-undef": "off",
     "consistent-return": "off"
   },
   "ignorePatterns": [
