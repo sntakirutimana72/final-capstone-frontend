@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import spaceless from '../../helpers/spaceless';
+import { spaceless } from '../../../helpers/utils';
 
 const PasswordReset = () => {
   const [email, setEmail] = useState('');

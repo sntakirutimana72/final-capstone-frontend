@@ -40,8 +40,6 @@ export default function AddRoom() {
   //  const onCheck = ({ target }) => {//update accs}
   //   accomodations: accs
 
-
-
   const handleSubmit = (event) => {
     event.preventDefault();
     const room = {
@@ -124,9 +122,6 @@ export default function AddRoom() {
           />
         </div>
 
-       
-
-        
         <div className={classes.button}>
           <button type="submit">Create Room</button>
         </div>
