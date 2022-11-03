@@ -1,6 +1,4 @@
-import {
-  BrowserRouter as Router, Route, Routes, Navigate,
-} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import {
   SignedInRoute,
   UserRequiredRoute,
@@ -27,25 +25,22 @@ const App = () => (
       <section className="w-full">
         <Routes>
           <Route element={<SignedInRoute />}>
-            <Route path="login" element={<Signin />} />
-            <Route path="register" element={<Register />} />
+            <Route exact path="login" element={<Signin />} />
+            <Route exact path="register" element={<Register />} />
           </Route>
           <Route element={<UserRequiredRoute />}>
-            <Route path="rooms" element={<Rooms />} />
-            <Route path="reserve" element={<ReserveForm />} />
-            <Route path="rooms/:id" element={<RoomDetail />} />
-            <Route path="logout" element={<Logout />} />
-            <Route path="my-reservations" element={<MyReserves />} />
-            {/* All routes that require login go in here */}
+            <Route exact path="rooms" element={<Rooms />} />
+            <Route exact path="reserve" element={<ReserveForm />} />
+            <Route exact path="rooms/:id" element={<RoomDetail />} />
+            <Route exact path="logout" element={<Logout />} />
+            <Route exact path="my-reservations" element={<MyReserves />} />
           </Route>
 
           <Route element={<AdminRoute />}>
-            <Route path="add-room" element={<AddRoom />} />
-            <Route path="delete-room" element={<></>} />
+            <Route exact path="add-room" element={<AddRoom />} />
+            <Route exact path="delete-room" element={<></>} />
           </Route>
-          <Route path="my-reservations" element={<MyReserves />} />
-
-          <Route path="*" element={<Navigate to="/login" replace />} />
+          <Route exact path="my-reservations" element={<MyReserves />} />
         </Routes>
       </section>
     </Router>
