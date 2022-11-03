@@ -32,9 +32,7 @@ const SessionProvider = ({ children }) => {
   const value = useMemo(() => ({ session, login, logout }), [session, login, logout]);
 
   useEffect(() => {
-    const user = Authenticator.verifyAuthenticity();
-    console.log(user);
-    setSession(user);
+    setSession(Authenticator.verifyAuthenticity());
   }, []);
 
   return (
