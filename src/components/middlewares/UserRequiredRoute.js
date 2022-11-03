@@ -1,9 +1,9 @@
 import { Navigate, Outlet } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { getSession } from '../../contexts/session';
+import { useSession } from '../../contexts/session';
 
 const UserRequiredRoute = ({ redirectPath, children }) => {
-  const { session } = getSession();
+  const { session } = useSession();
   return (
     !session.isAuthenticated
       ? <Navigate to={redirectPath} replace />

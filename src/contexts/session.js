@@ -10,7 +10,7 @@ import { storeSession, loadSession } from '../helpers/store_session';
 
 const SessionContext = createContext();
 
-export const getSession = () => useContext(SessionContext);
+export const useSession = () => useContext(SessionContext);
 
 const SessionCtxProvider = ({ children }) => {
   const [session, setSession] = useState(loadSession());

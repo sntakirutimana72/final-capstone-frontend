@@ -28,7 +28,7 @@ export default function SideNav() {
   const links = [
     {
       id: 1,
-      path: '/rooms',
+      path: '/room-index',
       text: 'ROOMS',
     },
     {
@@ -43,7 +43,7 @@ export default function SideNav() {
     },
     {
       id: 4,
-      path: '/add-room',
+      path: '/rooms',
       text: 'Add Room',
     },
 

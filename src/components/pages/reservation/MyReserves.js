@@ -12,9 +12,10 @@ const MyReserves = () => {
     status, analytics, visibilityFilter: filter, reservations,
   } = useSelector(getMyReserves);
   const dispatch = useDispatch();
+
   useEffect(() => {
     if (status === 'idle') dispatch(fetchOnlyMine());
-  }, []);
+  }, [dispatch, status]);
 
   return (
     <>

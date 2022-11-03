@@ -32,14 +32,21 @@
 .nav__button.close {
   margin-left: 0 !important;
 }
+
 .close__drawer {
   display: none !important;
 }
+
 @media screen and (max-width: 720px) {
   .sidenav {
     position: absolute !important;
   }
+
   .close__drawer {
     display: block !important;
+  }
+
+  .add_book_dev {
+    border: 2px red solid;
   }
 }

@@ -21,6 +21,12 @@
     "react"
   ],
   "rules": {
+    "no-use-before-define": ["error", {"functions": false, "classes": false}],
+    "jsx-a11y/label-has-associated-control": [ "error", {
+      "required": {
+        "some": [ "nesting", "id"  ]
+      }
+    }],
     "react/jsx-filename-extension": [
       "warn",
       {
