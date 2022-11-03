@@ -32,3 +32,7 @@
 .nav__button.close {
   margin-left: 0 !important;
 }
+
+.add_book_dev {
+  border: 2px red solid;
+}
