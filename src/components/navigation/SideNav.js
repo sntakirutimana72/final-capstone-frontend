@@ -106,7 +106,7 @@ const SideNav = () => {
       >
         <DrawerHeader>
           <IconButton onClick={handleDrawerClose} className="close__drawer">
-            {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+            {open ? <ChevronLeftIcon /> : <ChevronRightIcon />}
           </IconButton>
         </DrawerHeader>
         <Divider />
