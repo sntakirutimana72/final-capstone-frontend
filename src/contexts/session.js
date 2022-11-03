@@ -17,22 +17,24 @@ export const useSessionContext = () => sessionCtx;
 export const useSession = () => useContext(sessionCtx);
 
 const SessionProvider = ({ children }) => {
-  const [session, updateSession] = useState({});
+  const [session, setSession] = useState({});
 
   const login = useCallback((user) => {
     const ctx = { user, isAuthenticated: true };
-    updateSession(ctx);
+    setSession(ctx);
   }, []);
 
   const logout = useCallback(() => {
     AuthTokenStore.destroy();
-    updateSession({});
+    setSession({});
   }, []);
 
   const value = useMemo(() => ({ session, login, logout }), [session, login, logout]);
 
   useEffect(() => {
-    updateSession(Authenticator.verifyAuthenticity());
+    const user = Authenticator.verifyAuthenticity();
+    console.log(user);
+    setSession(user);
   }, []);
 
   return (

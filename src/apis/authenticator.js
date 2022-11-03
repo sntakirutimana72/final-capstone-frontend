@@ -36,7 +36,7 @@ export default class Authenticator {
   static verifyAuthenticity() {
     try {
       const response = syncFetch(authUrls.PROFILE, { headers: getHeaders() });
-      if (response.ok) return response.json();
+      if (response.ok) return { user: response.json(), isAuthenticated: true };
       throw Error;
     } catch {
       AuthTokenStore.destroy();

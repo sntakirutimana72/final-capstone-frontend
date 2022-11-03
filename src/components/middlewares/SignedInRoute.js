@@ -8,7 +8,7 @@ const SignedInRoute = ({ redirectPath, children }) => {
 
   if (session.isAuthenticated) {
     if (state === '/logout') state = null;
-    return <Navigate to={redirectPath} replace />;
+    return <Navigate to={state || redirectPath} replace />;
   }
   return children || <Outlet />;
 };
