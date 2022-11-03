@@ -4,14 +4,14 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { addNewReserve } from '../../../redux/features/reservations/mine';
-import { getRooms } from '../../../redux/roomsSlice';
+import { getRoomsList } from '../../../redux/roomsListSlice';
 
 function ReserveForm() {
     const dispatch = useDispatch();
-    const { data, loading, error } = useSelector((state) => state.rooms);
+    const { data } = useSelector((state) => state.roomsList);
 
     useEffect(() => {
-        dispatch(getRooms());
+        dispatch(getRoomsList());
     }, [dispatch]);
 
     const [from_date, setFrom_date] = useState('');
