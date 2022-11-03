@@ -1,4 +1,4 @@
-const getHeaders = (token) => {
+export const getHeaders = (token) => {
   const headers = {
     Accept: 'application/json',
     'Content-Type': 'application/json',

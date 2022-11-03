@@ -1,20 +1,22 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { SignedInRoute, UserRequiredRoute } from './components/middlewares';
+import ReserveForm from './Components/pages/add-reservation';
+import { SignedInRoute, UserRequiredRoute } from './Components/middlewares';
 import {
   Register,
   Signin,
   PasswordReset,
   NewPassword,
-} from './components/pages/authentication';
-import MyReserves from './components/pages/reservation';
-import SideNav from './components/navigation/SideNav';
+} from './Components/pages/authentication';
+import MyReserves from './Components/pages/reservation';
+import SideNav from './Components/navigation/SideNav';
 import SessionCtxProvider from './contexts/session';
+import Rooms from './Pages/Room/Rooms';
 
 const App = () => (
   <SessionCtxProvider>
     <Router>
-      <SideNav />
-      <section className="w-full">
+      <section className="w-full flex h-scree">
+        <SideNav />
         <Routes>
           <Route element={<SignedInRoute />}>
             <Route path="login" element={<Signin />} />
@@ -22,10 +24,12 @@ const App = () => (
             <Route path="set-new-password" element={<NewPassword />} />
             <Route path="reset-password" element={<PasswordReset />} />
           </Route>
-
           <Route element={<UserRequiredRoute />}>
-            <Route path="my-reservations" element={<MyReserves />} />
+            <Route exact path="/reservations/mine" element={<MyReserves />} />
+            <Route exact path="/reserve" element={<ReserveForm />} />
+            <Route exact path="/rooms" element={<Rooms />} />
           </Route>
+          <Route exact path="/my-reservations" element={<MyReserves />} />
         </Routes>
       </section>
     </Router>

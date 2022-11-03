@@ -1,34 +1,30 @@
 import * as React from 'react';
 import { NavLink } from 'react-router-dom';
-import { styled, useTheme } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import CssBaseline from '@mui/material/CssBaseline';
-import Toolbar from '@mui/material/Toolbar';
 import List from '@mui/material/List';
-import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ListItem from '@mui/material/ListItem';
 
-const drawerWidth = 240;
 const DrawerHeader = styled('div')(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
   padding: theme.spacing(0, 1),
   // necessary for content to be below app bar
   ...theme.mixins.toolbar,
-  justifyContent: 'flex-end',
+  justifyContent: 'center',
 }));
 
-export default function SideNav() {
+const SideNav = () => {
   const links = [
     {
       id: 1,
-      path: '/room-index',
+      path: '/rooms',
       text: 'ROOMS',
     },
     {
@@ -43,7 +39,7 @@ export default function SideNav() {
     },
     {
       id: 4,
-      path: '/rooms',
+      path: '/add-room',
       text: 'Add Room',
     },
 
@@ -54,36 +50,21 @@ export default function SideNav() {
     },
 
   ];
-  const theme = useTheme();
   const [open, setOpen] = React.useState(true);
-
+  const [drawerWidth, setDrawerWidth] = React.useState(240);
   const handleDrawerOpen = () => {
     setOpen(true);
+    setDrawerWidth(240);
   };
 
   const handleDrawerClose = () => {
     setOpen(false);
+    setDrawerWidth(0);
   };
 
   return (
-    <Box sx={{ display: 'flex' }} className="sidenav">
+    <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-
-      <Toolbar sx={{ position: 'absolute' }}>
-        <IconButton
-          color="inherit"
-          aria-label="open drawer"
-          onClick={handleDrawerOpen}
-          edge="start"
-          sx={{ mr: 2, ...(open && { display: 'none' }) }}
-        >
-          <MenuIcon />
-        </IconButton>
-        <Typography variant="h6" noWrap component="div">
-          Easy Booking
-        </Typography>
-      </Toolbar>
-
       <Drawer
         sx={{
           width: drawerWidth,
@@ -96,21 +77,24 @@ export default function SideNav() {
         variant="persistent"
         anchor="left"
         open={open}
+        className="drawer"
       >
         <DrawerHeader>
-          <IconButton onClick={handleDrawerClose} className="close__drawer">
-            {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-          </IconButton>
+          EASY BOOKING
         </DrawerHeader>
         <Divider />
         <List>
           {links.map((link) => (
-            <ListItem button component={NavLink} to={link.path} key={link.path} className="h-16 font-bold text-lg ">
+            <ListItem button component={NavLink} to={link.path} key={link.path} className="h-16 font-bold text-lg menuItem">
               {link.text}
             </ListItem>
           ))}
         </List>
       </Drawer>
+      <IconButton onClick={open ? handleDrawerClose : handleDrawerOpen} className={open ? 'nav__button open' : 'nav__button close'}>
+        {open ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+      </IconButton>
     </Box>
   );
-}
+};
+export default SideNav;
