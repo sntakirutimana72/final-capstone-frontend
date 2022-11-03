@@ -1,26 +1,17 @@
 import { Navigate, Outlet } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { useSession } from '../../contexts/session';
 
-const UserRequiredRoute = ({ user, children, redirectPath }) => {
-  if (!user) return <Navigate to={redirectPath} replace />;
-
-  return children || <Outlet />;
+const UserRequiredRoute = ({ redirectPath, children }) => {
+  const { session } = useSession();
+  return (
+    !session.isAuthenticated
+      ? <Navigate to={redirectPath} replace />
+      : (children || <Outlet />)
+  );
 };
 
-UserRequiredRoute.defaultProps = {
-  user: null,
-  children: null,
-  redirectPath: '/get-started',
-};
-
-UserRequiredRoute.propTypes = {
-  children: PropTypes.node,
-  redirectPath: PropTypes.string,
-  user: PropTypes.shape({
-    authToken: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    email: PropTypes.string.isRequired,
-  }),
-};
+UserRequiredRoute.defaultProps = { children: null, redirectPath: '/login' };
+UserRequiredRoute.propTypes = { children: PropTypes.node, redirectPath: PropTypes.string };
 
 export default UserRequiredRoute;

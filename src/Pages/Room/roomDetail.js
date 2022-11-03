@@ -15,7 +15,7 @@ const RoomDetail = () => {
       .then((response) => {
         setRoomDetail(response.data);
       });
-  }, []);
+  }, [id]);
 
   const nav = useNavigate();
   const changeRoute = () => {
