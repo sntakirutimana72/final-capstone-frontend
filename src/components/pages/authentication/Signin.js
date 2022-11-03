@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { LockClosedIcon } from '@heroicons/react/20/solid';
-import { getSession } from '../../../contexts/session';
+import { useSession } from '../../../contexts/session';
 import APIAuth from '../../../apis/hotel_booking/v1/auth';
 import { spaceless } from '../../../helpers/utils';
 
@@ -9,7 +9,7 @@ const Signin = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [disabled, setDisabled] = useState(false);
-  const { login, session } = getSession();
+  const { login, session } = useSession();
 
   const onEmailChange = ({ target }) => {
     setEmail(spaceless(target.value));

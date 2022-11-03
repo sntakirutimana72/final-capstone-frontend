@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --gray-text: #212529;
+  --primary-green: rgb(153, 212, 97);
+}
+
 .active {
   background-color: rgb(153, 212, 97) !important;
   color: white !important;
