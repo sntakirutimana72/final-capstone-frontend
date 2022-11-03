@@ -11,7 +11,7 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <main className="flex h-screen">
+        <main className="md:flex md:h-screen">
           <SideNav />
           <Routes>
             <Route element={<SignedInRoute />}>

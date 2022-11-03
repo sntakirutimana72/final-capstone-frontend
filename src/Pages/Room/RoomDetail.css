@@ -1,6 +1,6 @@
 .room-img {
-  width: 40%;
-  height: 40%;
+  width: auto;
+  height: auto;
   margin-top: 20vh;
   margin-left: 10vw;
   margin-right: 4vw;
@@ -41,11 +41,12 @@
   margin-right: 1rem;
 }
 
-.left-panel {
+.right-panel {
   margin-right: 1rem;
+  margin-left: 1rem;
 }
 
-.left-panel li {
+.right-panel li {
   padding: 0.6rem;
   display: flex;
   justify-content: space-between;
@@ -53,7 +54,7 @@
   font-weight: 600;
 }
 
-.left-panel li:nth-child(odd) {
+.right-panel li:nth-child(odd) {
   background-color: #e2e3e5;
 }
 
@@ -63,4 +64,15 @@
 
 .font-arrow {
   background-color: #92b811;
+}
+
+@media only screen and (min-width: 768px) {
+  .room-img {
+    width: 40%;
+    height: 40%;
+    margin-top: 20vh;
+    margin-left: 10vw;
+    margin-right: 4vw;
+    display: block;
+  }
 }

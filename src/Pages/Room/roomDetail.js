@@ -34,7 +34,7 @@ const RoomDetail = () => {
           *
           {roomDetail.description}
         </h1>
-        <ul className="left-panel">
+        <ul className="right-panel">
           <li>
             <span className="room-info-title">
               Capacity
