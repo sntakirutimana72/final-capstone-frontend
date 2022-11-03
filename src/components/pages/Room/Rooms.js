@@ -7,6 +7,8 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { getRooms } from '../../../redux/roomsSlice';
 import Room from './Room';
+import NoData from '../../common/NoData';
+import { isNilOrEmpty } from '../../../helpers/utils';
 import './Carousel.css';
 
 function Rooms() {
@@ -60,23 +62,27 @@ function Rooms() {
         Please select a room from below list to reserve
       </p>
       <div>
-        <Carousel
-          renderCenterLeftControls={({ previousSlide }) => (
-            <button type="button" onClick={previousSlide}>
-              <ChevronLeftIcon />
-            </button>
-          )}
-          renderCenterRightControls={({ nextSlide }) => (
-            <button type="button" onClick={nextSlide}>
-              <ChevronRightIcon />
-            </button>
-          )}
-          wrapAround
-          slidesToShow={slideToShow}
-          renderBottomCenterControls={false}
-        >
-          {content}
-        </Carousel>
+        {isNilOrEmpty(data) ? (
+          <NoData />
+        ) : (
+          <Carousel
+            renderCenterLeftControls={({ previousSlide }) => (
+              <button type="button" onClick={previousSlide}>
+                <ChevronLeftIcon />
+              </button>
+            )}
+            renderCenterRightControls={({ nextSlide }) => (
+              <button type="button" onClick={nextSlide}>
+                <ChevronRightIcon />
+              </button>
+            )}
+            wrapAround
+            slidesToShow={slideToShow}
+            renderBottomCenterControls={false}
+          >
+            {content}
+          </Carousel>
+        )}
       </div>
     </>
   );
