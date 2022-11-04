@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import classes from './AddRoom.module.css';
 import { createRoom } from '../../../redux/addRoomSlice';
+import { getHeaders } from '../../../apis/curl';
 
 export default function AddRoom() {
   const [state, setState] = useState({
@@ -19,7 +20,7 @@ export default function AddRoom() {
   const [selectedOption, setSelectedOption] = useState(roomType[0]);
 
   useEffect(() => {
-    axios.get('http://localhost:3001/rooms_types').then((response) => {
+    axios.get('http://localhost:3001/api/v1/rooms_types', { headers: getHeaders() }).then((response) => {
       setRoomType(response.data.rooms_types);
     });
   }, []);

@@ -1,6 +1,5 @@
 import syncFetch from 'sync-fetch';
 import AuthTokenStore from '../helpers/store_session';
-import { isNil } from '../helpers/utils';
 import { authUrls } from './urls';
 import { postCurl, getHeaders } from './curl';
 
@@ -37,11 +36,7 @@ export default class Authenticator {
   static verifyAuthenticity() {
     try {
       const response = syncFetch(authUrls.PROFILE, { headers: getHeaders() });
-      if (response.ok) {
-        const user = response.json();
-        if (isNil(user)) throw Error;
-        return { user, isAuthenticated: true };
-      }
+      if (response.ok) return { user: response.json(), isAuthenticated: true };
       throw Error;
     } catch {
       AuthTokenStore.destroy();

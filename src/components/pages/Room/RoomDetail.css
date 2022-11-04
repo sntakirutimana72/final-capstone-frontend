@@ -1,3 +1,8 @@
+.main-container {
+  display: flex;
+  flex-direction: column;
+}
+
 .room-img {
   width: auto;
   height: auto;
@@ -8,7 +13,6 @@
 }
 
 .reserve-btn {
-  background-color: #92b811;
   color: #fff;
   padding: 12px;
   width: 50%;
@@ -16,7 +20,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 8rem 1rem 0 auto;
+  margin: 4rem 1rem 0 auto;
 }
 
 .room-info {
@@ -74,5 +78,21 @@
     margin-left: 10vw;
     margin-right: 4vw;
     display: block;
+  }
+
+  .main-container {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .reserve-btn {
+    color: #fff;
+    padding: 12px;
+    width: 50%;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 8rem 1rem 0 auto;
   }
 }

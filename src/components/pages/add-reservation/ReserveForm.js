@@ -32,7 +32,7 @@ function ReserveForm() {
             room_id,
         };
         dispatch(addNewReserve(obj));
-        navigate('/rooms')
+        navigate('/my-reservations')
     }
     return (
         <>
