@@ -12,7 +12,7 @@ const UserRequiredRoute = ({ redirectPath, children }) => {
   return children || <Outlet />;
 };
 
-UserRequiredRoute.defaultProps = { children: null, redirectPath: '/login' };
+UserRequiredRoute.defaultProps = { children: null, redirectPath: '/' };
 UserRequiredRoute.propTypes = { children: PropTypes.node, redirectPath: PropTypes.string };
 
 export default UserRequiredRoute;
