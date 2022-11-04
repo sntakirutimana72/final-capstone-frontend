@@ -7,14 +7,13 @@ const AdminRoute = ({ redirectPath, children }) => {
   const { user, isAuthenticated } = session;
   const roles = ['admin', 'super_admin'];
 
-  let toUrl = "/login";
+  let toUrl = '/login';
 
   if (isAuthenticated) {
     if (roles.includes(user.role)) return children || <Outlet />;
     toUrl = redirectPath;
   }
   return <Navigate to={toUrl} replace />;
-
 };
 
 AdminRoute.defaultProps = { children: null, redirectPath: '/' };

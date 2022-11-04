@@ -39,7 +39,8 @@
     "react/react-in-jsx-scope": "off",
     "import/no-unresolved": "off",
     "no-shadow": "off",
-    "no-undef": "off",
+    "no-undef-vars": "off",
+    "react/no-array-index-key": "off",
     "consistent-return": "off"
   },
   "ignorePatterns": [

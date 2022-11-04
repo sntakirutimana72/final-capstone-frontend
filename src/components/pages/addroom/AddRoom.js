@@ -1,50 +1,51 @@
-import { useState, useEffect, useCallback } from "react";
-import { useNavigate } from "react-router-dom";
-import { getFacilities, createRoom } from "../../../apis/v1/rooms";
-import { isEmpty } from "../../../helpers/utils";
-import Spinner from "../../common/Spinner";
-import classes from "./AddRoom.module.css";
+import { useState, useEffect, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { getFacilities, createRoom } from '../../../apis/v1/rooms';
+import { isEmpty } from '../../../helpers/utils';
+import Spinner from '../../common/Spinner';
+import classes from './AddRoom.module.css';
+
 export default function AddRoom() {
   const [disable, setDisable] = useState(false);
-  const [name, setName] = useState("");
-  const [price, setPrice] = useState("");
-  const [picture, setPicture] = useState("");
-  const [beds, setBeds] = useState("");
-  const [description, setDesc] = useState("");
-  const [roomType, setType] = useState("");
+  const [name, setName] = useState('');
+  const [price, setPrice] = useState('');
+  const [picture, setPicture] = useState('');
+  const [beds, setBeds] = useState('');
+  const [description, setDesc] = useState('');
+  const [roomType, setType] = useState('');
   const [roomTypes, setTypes] = useState([]);
   const [roomAccoms, setAccoms] = useState([]);
   const [checkedState, setCheckedState] = useState(
-    new Array(roomAccoms).fill(false)
+    new Array(roomAccoms).fill(false),
   );
   const navigate = useNavigate();
   const handleNameChange = useCallback(
     ({ target }) => setName(target.value),
-    []
+    [],
   );
   const handlePriceChange = useCallback(
     ({ target }) => setPrice(target.value),
-    []
+    [],
   );
   const handlePictureChange = useCallback(
     ({ target }) => setPicture(target.value),
-    []
+    [],
   );
   const handleBedsChange = useCallback(
     ({ target }) => setBeds(target.value),
-    []
+    [],
   );
   const handleDescChange = useCallback(
     ({ target }) => setDesc(target.value),
-    []
+    [],
   );
   const handleTypeChange = useCallback(
     ({ target }) => setType(target.value),
-    []
+    [],
   );
   const handleCheckedState = (position) => {
-    const updatedCheckedState = checkedState.map((checked, index) =>
-      index === position ? !checked : checked
+    const updatedCheckedState = checkedState.map(
+      (checked, index) => (index === position ? !checked : checked),
     );
     setCheckedState(updatedCheckedState);
   };
@@ -75,7 +76,7 @@ export default function AddRoom() {
       },
     };
     createRoom(room)
-      .then(() => navigate("/rooms"))
+      .then(() => navigate('/rooms'))
       .catch(() => setDisable(false));
   };
   return (
