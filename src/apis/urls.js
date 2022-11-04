@@ -18,5 +18,7 @@ export const reserveUrls = {
 export const roomBaseUrl = `${apiUrl}/rooms`;
 export const roomUrls = {
   build: (id) => `${roomBaseUrl}/${id}`,
+  FACILITIES: `${apiUrl}/room-dependencies`,
+
   // your urls go here
 };
