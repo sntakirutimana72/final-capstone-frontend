@@ -14,8 +14,8 @@ const MyReserves = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (status === 'idle') dispatch(fetchOnlyMine());
-  }, [status, dispatch]);
+    dispatch(fetchOnlyMine());
+  });
 
   return (
     <>
