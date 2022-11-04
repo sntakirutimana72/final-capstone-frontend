@@ -5,12 +5,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { selectRoomsList } from '../../../apis/v1/rooms';
 import { addNewReserve } from '../../../redux/features/reservations/mine';
-
 function ReserveForm() {
   const dispatch = useDispatch();
   const location = useLocation();
-  // {...location.state.room_id === room.id && setSelected(true)}
-  const [selected, setSelected] = useState(false);
   const [data, setData] = useState([])
   useEffect(() => {
     selectRoomsList().then(({ rooms }) => {
@@ -69,10 +66,10 @@ function ReserveForm() {
                   Select a room
                 </label>
                 <div className="relative">
-                  <select onChange={onRoomChanged} className="block appearance-none w-full border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
-                    <option defaultValue={0}>Please select</option>
+                  <select onChange={onRoomChanged} defaultValue={location.state} className="block appearance-none w-full border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
+                    <option>Please select</option>
                     {data.map((room) => (
-                      <option value={room.id} key={room.id} selected={selected} >{room.name}</option>
+                      <option value={room.id} key={room.id}  selected={location.state == room.id}>{room.name}</option>
                     ))}
                   </select>
                   <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
