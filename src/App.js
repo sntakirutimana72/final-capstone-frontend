@@ -1,6 +1,4 @@
-import {
-  BrowserRouter as Router, Route, Routes, Navigate,
-} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import {
   SignedInRoute,
   UserRequiredRoute,
@@ -36,16 +34,12 @@ const App = () => (
             <Route path="rooms/:id" element={<RoomDetail />} />
             <Route path="logout" element={<Logout />} />
             <Route path="my-reservations" element={<MyReserves />} />
-            {/* All routes that require login go in here */}
           </Route>
 
           <Route element={<AdminRoute />}>
             <Route path="add-room" element={<AddRoom />} />
             <Route path="delete-room" element={<></>} />
           </Route>
-          <Route path="my-reservations" element={<MyReserves />} />
-
-          <Route path="*" element={<Navigate to="/login" replace />} />
         </Routes>
       </section>
     </Router>

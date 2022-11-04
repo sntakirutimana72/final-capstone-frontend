@@ -13,7 +13,7 @@ const SignedInRoute = ({ redirectPath, children }) => {
   return children || <Outlet />;
 };
 
-SignedInRoute.defaultProps = { children: null, redirectPath: '/' };
+SignedInRoute.defaultProps = { children: null, redirectPath: '/rooms' };
 SignedInRoute.propTypes = { children: PropTypes.node, redirectPath: PropTypes.string };
 
 export default SignedInRoute;

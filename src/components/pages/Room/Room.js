@@ -5,7 +5,7 @@ import { FaFacebookF, FaTwitter, FaInstagram } from 'react-icons/fa';
 import './style.css';
 
 const Room = ({ room }) => (
-  <NavLink to={`/room/${room.id}`} className="link">
+  <NavLink to={`/rooms/${room.id}`} className="link">
     <div className="room-card">
       <div className="room-image-container">
         <img src={room.picture} alt={room.name} className="room-image" />
