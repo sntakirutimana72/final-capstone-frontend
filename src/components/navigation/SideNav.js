@@ -21,7 +21,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   padding: theme.spacing(0, 1),
   // necessary for content to be below app bar
   ...theme.mixins.toolbar,
-  justifyContent: 'flex-end',
+  justifyContent: 'flex-start',
 }));
 const anyUsersPaths = [
   {
@@ -99,6 +99,7 @@ const SideNav = () => {
         open={open}
       >
         <DrawerHeader>
+          Easy Booking
           <IconButton onClick={handleDrawerClose} className="close__drawer">
             {open ? <ChevronLeftIcon /> : <ChevronRightIcon />}
           </IconButton>
