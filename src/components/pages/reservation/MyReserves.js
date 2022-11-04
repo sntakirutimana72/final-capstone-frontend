@@ -15,7 +15,7 @@ const MyReserves = () => {
 
   useEffect(() => {
     dispatch(fetchOnlyMine());
-  }, []);
+  }, [dispatch]);
 
   return (
     <>
