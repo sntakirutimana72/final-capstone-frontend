@@ -8,6 +8,6 @@ export default combineReducers({
   myReserves,
   rooms,
   newRoom,
-  roomsList
-  
+  roomsList,
+
 });

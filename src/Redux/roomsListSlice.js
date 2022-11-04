@@ -3,7 +3,7 @@ import axios from 'axios';
 import AuthTokenStore from '../helpers/store_session';
 
 const config = {
-  headers: { Authorization: AuthTokenStore.fetch(), }
+  headers: { Authorization: AuthTokenStore.fetch() },
 };
 
 export const getRoomsList = createAsyncThunk('roomsList/getRoomsList', async () => {

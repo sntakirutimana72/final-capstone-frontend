@@ -21,12 +21,30 @@
     "react"
   ],
   "rules": {
-    "no-use-before-define": ["error", {"functions": false, "classes": false}],
-    "jsx-a11y/label-has-associated-control": [ "error", {
-      "required": {
-        "some": [ "nesting", "id"  ]
+    "no-param-reassign": [
+      2,
+      {
+        "props": false
       }
-    }],
+    ],
+    "no-use-before-define": [
+      "error",
+      {
+        "functions": false,
+        "classes": false
+      }
+    ],
+    "jsx-a11y/label-has-associated-control": [
+      "error",
+      {
+        "required": {
+          "some": [
+            "nesting",
+            "id"
+          ]
+        }
+      }
+    ],
     "react/jsx-filename-extension": [
       "warn",
       {
