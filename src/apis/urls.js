@@ -1,4 +1,4 @@
-export const rootUrl = 'http://localhost:3000';
+export const rootUrl = 'https://easy-booking12.herokuapp.com';
 
 export const authUrls = {
   LOGIN: `${rootUrl}/users/sign_in`,
