@@ -22,3 +22,5 @@ export const roomUrls = {
 
   // your urls go here
 };
+
+export const selectRoomsUrl = `${apiUrl}/room-list`;

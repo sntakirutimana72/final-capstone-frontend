@@ -9,8 +9,8 @@ import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import SideDrawer from './SideDrawer';
 import { AdminProtectedNode } from '../middlewares';
 
@@ -45,12 +45,6 @@ const adminsPaths = [
     id: 4,
     path: '/add-room',
     name: 'Add Room',
-  },
-
-  {
-    id: 5,
-    path: '/delete-room',
-    name: 'Delete Room',
   },
 ];
 const otherPaths = [

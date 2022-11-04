@@ -2,17 +2,18 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { selectRoomsList } from '../../../apis/v1/rooms';
 import { addNewReserve } from '../../../redux/features/reservations/mine';
-import { getRooms } from '../../../redux/roomsSlice';
-
 function ReserveForm() {
   const dispatch = useDispatch();
-  const { data } = useSelector((state) => state.rooms);
-
+  const location = useLocation();
+  const [data, setData] = useState([])
   useEffect(() => {
-    dispatch(getRooms());
-  }, [dispatch]);
+    selectRoomsList().then(({ rooms }) => {
+      setData(rooms)
+    }, []);
+  }, []);
 
   const [from_date, setFrom_date] = useState('');
   const [to_date, setTo_date] = useState('');
@@ -32,7 +33,7 @@ function ReserveForm() {
       room_id,
     };
     dispatch(addNewReserve(obj));
-    navigate('/rooms')
+    navigate('/my-reservations')
   }
   return (
     <>
@@ -57,17 +58,18 @@ function ReserveForm() {
 
               </div>
             </div>
+
             <div className="flex flex-wrap -mx-3 mb-2">
 
               <div className="w-full px-3 mb-6 md:mb-0">
                 <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-state">
-                  Select Room
+                  Select a room
                 </label>
                 <div className="relative">
-                  <select onChange={onRoomChanged} className="block appearance-none w-full border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
-                    <option defaultValue={0}>Please select</option>
+                  <select onChange={onRoomChanged} defaultValue={location.state} className="block appearance-none w-full border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
+                    <option>Please select</option>
                     {data.map((room) => (
-                      <option value={room.id} key={room.id}>{room.name}</option>
+                      <option value={room.id} key={room.id}  selected={location.state == room.id}>{room.name}</option>
                     ))}
                   </select>
                   <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
