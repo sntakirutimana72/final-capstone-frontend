@@ -12,10 +12,7 @@ const RoomDetail = () => {
   const detail = rooms.find((room) => room.id === Number(id));
 
   const nav = useNavigate();
-  const changeRoute = () => {
-    const path = `/reserve/${id}`;
-    nav(path);
-  };
+  const changeRoute = () => nav('/reserve', { state: { room_id: id } });
 
   return (
     <>
