@@ -15,7 +15,7 @@ const MyReserves = () => {
 
   useEffect(() => {
     if (status === 'idle') dispatch(fetchOnlyMine());
-  }, [dispatch, status]);
+  }, [status, dispatch]);
 
   return (
     <>
@@ -25,7 +25,7 @@ const MyReserves = () => {
             <Spinner classes="text-gray-300 h-9 w-9" />
           </div>
         ) : (
-          <div className="flex flex-col py-5 p-6 gap-4 min-h-screen">
+          <div className="flex flex-col items-center py-5 p-6 gap-4 min-h-screen">
             <Header />
             <Filters visibilityFilter={filter} analytics={analytics} />
             <ListView items={reservations} />

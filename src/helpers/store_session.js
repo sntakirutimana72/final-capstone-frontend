@@ -1,9 +1,9 @@
 const key = 'dklsajoiweu0-59apjdlkfakoppkdsja0648pjfakl';
 
-export const storeSession = (session) => {
-  localStorage.setItem(key, JSON.stringify(session));
-};
+export default class AuthTokenStore {
+  static store(token = '') { localStorage.setItem(key, token); }
 
-export const loadSession = () => JSON.parse(localStorage.getItem(key)) || {};
+  static fetch() { return localStorage.getItem(key); }
 
-export const getAuthToken = () => loadSession().token;
+  static destroy() { localStorage.removeItem(key); }
+}

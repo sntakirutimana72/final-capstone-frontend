@@ -4,10 +4,7 @@ import {
   updateReservation,
   cancelReservation,
 } from '../../../redux/features/reservations/mine';
-import {
-  cancelReserve,
-  updateReserve,
-} from '../../../apis/hotel_booking/v1/reservations';
+import { cancelReserve, updateReserve } from '../../../apis/v1/reservations';
 import { singleProps } from '../../../props/reserves';
 import Spinner from '../../common/Spinner';
 
@@ -52,11 +49,7 @@ const ListItem = ({ item }) => {
     <div data-id={item.id}>
       <div className="flex flex-col gap-2 pt-3 bg-white text-sm rounded-lg shadow-1bs max-w-[270px]">
         <div className="group/item px-2">
-          <img
-            src="https://www.gannett-cdn.com/-mm-/05b227ad5b8ad4e9dcb53af4f31d7fbdb7fa901b/c=0-64-2119-1259/local/-/media/USATODAY/USATODAY/2014/08/13/1407953244000-177513283.jpg"
-            alt="Room Interior"
-            className="rounded-lg"
-          />
+          <img src={room.picture || ''} alt="Room Interior" className="rounded-lg" />
           <div className="flex justify-between p-1.5">
             <span>{room.name}</span>
             <span>{item.status}</span>

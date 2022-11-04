@@ -1,21 +1,16 @@
 import {
-  getCurl,
-  patchCurl,
-  deleteCurl,
-  postCurl,
-} from './curl';
-import { getAuthToken } from '../../../helpers/store_session';
-
-export const baseUrl = 'http://localhost:3001/reservations';
+  getCurl, patchCurl, deleteCurl, postCurl,
+} from '../curl';
+import { reserveUrls, reserveBaseUrl } from '../urls';
 
 export const getOnlyMine = async () => {
-  const response = await getCurl(`${baseUrl}/mine`, getAuthToken());
+  const response = await getCurl(reserveUrls.MINE);
   if (!response.ok) throw new Error('');
   return response.json();
 };
 
 export const createReservation = (data) => new Promise((resolve, reject) => {
-  postCurl(`${baseUrl}`, getAuthToken(), data)
+  postCurl(reserveBaseUrl, data)
     .then((response) => {
       if (!response.ok) reject();
       return response.json();
@@ -25,7 +20,7 @@ export const createReservation = (data) => new Promise((resolve, reject) => {
 });
 
 export const updateReserve = ({ id }, dates) => new Promise((resolve, reject) => {
-  patchCurl(`${baseUrl}/${id}`, getAuthToken(), dates)
+  patchCurl(reserveUrls.build(id), dates)
     .then((response) => {
       if (!response.ok) reject();
       return response.json();
@@ -35,7 +30,7 @@ export const updateReserve = ({ id }, dates) => new Promise((resolve, reject) =>
 });
 
 export const cancelReserve = ({ id }) => new Promise((resolve, reject) => {
-  deleteCurl(`${baseUrl}/${id}`, getAuthToken())
+  deleteCurl(reserveUrls.build(id))
     .then((response) => {
       if (response.ok) resolve();
       reject();

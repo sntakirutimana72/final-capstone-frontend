@@ -1,39 +1,51 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import ReserveForm from './Components/pages/add-reservation';
-import { SignedInRoute, UserRequiredRoute } from './Components/middlewares';
 import {
-  Register,
-  Signin,
-  PasswordReset,
-  NewPassword,
-} from './Components/pages/authentication';
-import MyReserves from './Components/pages/reservation';
-import SideNav from './Components/navigation/SideNav';
-import SessionCtxProvider from './contexts/session';
-import Rooms from './Pages/Room/Rooms';
+  SignedInRoute,
+  UserRequiredRoute,
+  ProtectedNode,
+  AdminRoute,
+} from './components/middlewares';
+import SplashScreen from './components/pages/spalshScreen/Splash';
+import {
+  Register, Signin, Logout,
+} from './components/pages/authentication';
+import AddRoom from './components/pages/addroom/AddRoom';
+import ReserveForm from './components/pages/add-reservation';
+import RoomDetail from './components/pages/Room/roomDetail';
+import Rooms from './components/pages/Room/Rooms';
+import MyReserves from './components/pages/reservation';
+import SideNav from './components/navigation/SideNav';
+import SessionProvider from './contexts/session';
 
 const App = () => (
-  <SessionCtxProvider>
+  <SessionProvider>
     <Router>
-      <section className="w-full flex h-scree">
+      <ProtectedNode>
         <SideNav />
+      </ProtectedNode>
+      <section className="w-full">
         <Routes>
           <Route element={<SignedInRoute />}>
+            <Route path="/" element={<SplashScreen />} />
             <Route path="login" element={<Signin />} />
             <Route path="register" element={<Register />} />
-            <Route path="set-new-password" element={<NewPassword />} />
-            <Route path="reset-password" element={<PasswordReset />} />
           </Route>
           <Route element={<UserRequiredRoute />}>
-            <Route exact path="/reservations/mine" element={<MyReserves />} />
-            <Route exact path="/reserve" element={<ReserveForm />} />
-            <Route exact path="/rooms" element={<Rooms />} />
+            <Route path="rooms" element={<Rooms />} />
+            <Route path="reserve" element={<ReserveForm />} />
+            <Route path="rooms/:id" element={<RoomDetail />} />
+            <Route path="logout" element={<Logout />} />
+            <Route path="my-reservations" element={<MyReserves />} />
           </Route>
-          <Route exact path="/my-reservations" element={<MyReserves />} />
+
+          <Route element={<AdminRoute />}>
+            <Route path="add-room" element={<AddRoom />} />
+            <Route path="delete-room" element={<></>} />
+          </Route>
         </Routes>
       </section>
     </Router>
-  </SessionCtxProvider>
+  </SessionProvider>
 );
 
 export default App;

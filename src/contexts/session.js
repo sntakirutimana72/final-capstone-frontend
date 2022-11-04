@@ -1,39 +1,47 @@
 import {
   useState,
+  useEffect,
   createContext,
   useCallback,
   useMemo,
   useContext,
 } from 'react';
 import PropTypes from 'prop-types';
-import { storeSession, loadSession } from '../helpers/store_session';
+import Authenticator from '../apis/authenticator';
+import AuthTokenStore from '../helpers/store_session';
 
-const SessionContext = createContext();
+const sessionCtx = createContext();
 
-export const useSession = () => useContext(SessionContext);
+export const useSessionContext = () => sessionCtx;
 
-const SessionCtxProvider = ({ children }) => {
-  const [session, setSession] = useState(loadSession());
-  const login = useCallback(({ user, token }) => {
-    const ctx = { user, token, isAuthenticated: true };
-    storeSession(ctx);
+export const useSession = () => useContext(sessionCtx);
+
+const SessionProvider = ({ children }) => {
+  const [session, setSession] = useState({});
+
+  const login = useCallback((user) => {
+    const ctx = { user, isAuthenticated: true };
     setSession(ctx);
   }, []);
 
   const logout = useCallback(() => {
-    storeSession();
+    AuthTokenStore.destroy();
     setSession({});
   }, []);
 
   const value = useMemo(() => ({ session, login, logout }), [session, login, logout]);
 
+  useEffect(() => {
+    setSession(Authenticator.verifyAuthenticity());
+  }, []);
+
   return (
-    <SessionContext.Provider value={value}>
+    <sessionCtx.Provider value={value}>
       {children}
-    </SessionContext.Provider>
+    </sessionCtx.Provider>
   );
 };
 
-SessionCtxProvider.propTypes = { children: PropTypes.node.isRequired };
+SessionProvider.propTypes = { children: PropTypes.node.isRequired };
 
-export default SessionCtxProvider;
+export default SessionProvider;

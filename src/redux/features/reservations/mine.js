@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { getOnlyMine, createReservation } from '../../../apis/hotel_booking/v1/reservations';
+import { getOnlyMine, createReservation } from '../../../apis/v1/reservations';
 import {
   onPending,
   onRejected,
@@ -12,7 +12,7 @@ import {
 const name = 'reservations/mine';
 const addReserve = 'reservations/AddReserve';
 export const fetchOnlyMine = createAsyncThunk(name, getOnlyMine);
-export const addNewReserve = createAsyncThunk(addReserve, async (data) => createReservation(data));
+export const addNewReserve = createAsyncThunk(addReserve, (data) => createReservation(data));
 const initialState = {
   status: 'idle',
   analytics: [0, 0, 0, 0],

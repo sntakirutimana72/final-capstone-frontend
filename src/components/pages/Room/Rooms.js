@@ -5,8 +5,10 @@ import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import { getRooms } from '../../redux/roomsSlice';
+import { getRooms } from '../../../redux/roomsSlice';
 import Room from './Room';
+import NoData from '../../common/NoData';
+import { isNilOrEmpty } from '../../../helpers/utils';
 import './Carousel.css';
 
 function Rooms() {
@@ -53,30 +55,36 @@ function Rooms() {
 
   return (
     <>
-      <h2 className="text-[30px]  text-center mt-10 uppercase">
-        <strong>Our Rooms</strong>
-      </h2>
-      <p className="text-[18px] text-center mb-5 text-zinc-500">
-        Please select a room from below list to reserve
-      </p>
       <div>
-        <Carousel
-          renderCenterLeftControls={({ previousSlide }) => (
-            <button type="button" onClick={previousSlide}>
-              <ChevronLeftIcon />
-            </button>
+        <h2 className="text-[30px]  text-center mt-10 uppercase">
+          <strong>Our Rooms</strong>
+        </h2>
+        <p className="text-[18px] text-center mb-5 text-zinc-500">
+          Please select a room from below list to reserve
+        </p>
+        <div>
+          {isNilOrEmpty(data) ? (
+            <NoData />
+          ) : (
+            <Carousel
+              renderCenterLeftControls={({ previousSlide }) => (
+                <button type="button" onClick={previousSlide}>
+                  <ChevronLeftIcon />
+                </button>
+              )}
+              renderCenterRightControls={({ nextSlide }) => (
+                <button type="button" onClick={nextSlide}>
+                  <ChevronRightIcon />
+                </button>
+              )}
+              wrapAround
+              slidesToShow={slideToShow}
+              renderBottomCenterControls={false}
+            >
+              {content}
+            </Carousel>
           )}
-          renderCenterRightControls={({ nextSlide }) => (
-            <button type="button" onClick={nextSlide}>
-              <ChevronRightIcon />
-            </button>
-          )}
-          wrapAround
-          slidesToShow={slideToShow}
-          renderBottomCenterControls={false}
-        >
-          {content}
-        </Carousel>
+        </div>
       </div>
     </>
   );

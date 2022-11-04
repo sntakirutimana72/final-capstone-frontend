@@ -1,4 +1,13 @@
 import UserRequiredRoute from './UserRequiredRoute';
 import SignedInRoute from './SignedInRoute';
+import ProtectedNode from './ProtectedNode';
+import AdminProtectedNode from './AdminProtectedNode';
+import AdminRoute from './AdminRoute';
 
-export { UserRequiredRoute, SignedInRoute };
+export {
+  AdminRoute,
+  UserRequiredRoute,
+  SignedInRoute,
+  ProtectedNode,
+  AdminProtectedNode,
+};

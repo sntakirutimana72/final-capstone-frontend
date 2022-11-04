@@ -1,8 +1,5 @@
 import Signin from './Signin';
+import Logout from './Logout';
 import Register from './Register';
-import PasswordReset from './PasswordReset';
-import NewPassword from './NewPassword';
 
-export {
-  Signin, Register, PasswordReset, NewPassword,
-};
+export { Signin, Register, Logout };
