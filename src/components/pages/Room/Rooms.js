@@ -55,34 +55,36 @@ function Rooms() {
 
   return (
     <>
-      <h2 className="text-[30px]  text-center mt-10 uppercase">
-        <strong>Our Rooms</strong>
-      </h2>
-      <p className="text-[18px] text-center mb-5 text-zinc-500">
-        Please select a room from below list to reserve
-      </p>
       <div>
-        {isNilOrEmpty(data) ? (
-          <NoData />
-        ) : (
-          <Carousel
-            renderCenterLeftControls={({ previousSlide }) => (
-              <button type="button" onClick={previousSlide}>
-                <ChevronLeftIcon />
-              </button>
-            )}
-            renderCenterRightControls={({ nextSlide }) => (
-              <button type="button" onClick={nextSlide}>
-                <ChevronRightIcon />
-              </button>
-            )}
-            wrapAround
-            slidesToShow={slideToShow}
-            renderBottomCenterControls={false}
-          >
-            {content}
-          </Carousel>
-        )}
+        <h2 className="text-[30px]  text-center mt-10 uppercase">
+          <strong>Our Rooms</strong>
+        </h2>
+        <p className="text-[18px] text-center mb-5 text-zinc-500">
+          Please select a room from below list to reserve
+        </p>
+        <div>
+          {isNilOrEmpty(data) ? (
+            <NoData />
+          ) : (
+            <Carousel
+              renderCenterLeftControls={({ previousSlide }) => (
+                <button type="button" onClick={previousSlide}>
+                  <ChevronLeftIcon />
+                </button>
+              )}
+              renderCenterRightControls={({ nextSlide }) => (
+                <button type="button" onClick={nextSlide}>
+                  <ChevronRightIcon />
+                </button>
+              )}
+              wrapAround
+              slidesToShow={slideToShow}
+              renderBottomCenterControls={false}
+            >
+              {content}
+            </Carousel>
+          )}
+        </div>
       </div>
     </>
   );
