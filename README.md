@@ -11,8 +11,8 @@ The `EASY BOOKING` is a hotel booking app where users can make room reservations
       <th>Home</th>
     </tr>
     <tr>
-      <img src="./screenshots/splash.png" alt="Splash" align="center">
-      <img src="./screenshots/home.png" alt="Home" align="center" />
+      <td><img src="./screenshots/splash.png" alt="Splash" align="center" /></td>
+      <td><img src="./screenshots/home.png" alt="Home" align="center" /></td>
     </tr>
   </tr>
   
@@ -22,8 +22,8 @@ The `EASY BOOKING` is a hotel booking app where users can make room reservations
       <th>Register</th>
     </tr>
     <tr>
-      <img src="./screenshots/login.png" alt="Login" align="center">
-      <img src="./screenshots/register.png" alt="Register" align="center" />
+      <td><img src="./screenshots/login.png" alt="Login" align="center" /></td>
+      <td><img src="./screenshots/register.png" alt="Register" align="center" /></td>
     </tr>
   </tr>
 </table>

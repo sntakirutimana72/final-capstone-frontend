@@ -66,11 +66,7 @@ console.log(room_id)
                   Select a room
                 </label>
                 <div className="relative">
-<<<<<<< HEAD
-                  <select onChange={onRoomChanged} defaultValue={location.state} className="block appearance-none w-full border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
-=======
                   <select onChange={onRoomChanged} className="block appearance-none w-full border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
->>>>>>> 8034dfcd671d09224e788d40966abba027c69ddf
                     <option>Please select</option>
                     {data.map((room) => (
                       <option value={room.id} key={room.id}  selected={location.state == room.id}>{room.name}</option>
