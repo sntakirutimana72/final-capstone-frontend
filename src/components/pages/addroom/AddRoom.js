@@ -1,73 +1,97 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import { getFacilities, createRoom } from '../../../apis/v1/rooms';
+import { isEmpty } from '../../../helpers/utils';
+import Spinner from '../../common/Spinner';
 import classes from './AddRoom.module.css';
-import { createRoom } from '../../../redux/addRoomSlice';
-import { getHeaders } from '../../../apis/curl';
 
 export default function AddRoom() {
-  const [state, setState] = useState({
-    picture: '',
-    name: '',
-    number_of_beds: '',
-    price: '',
-    description: '',
-    room_type_id: '',
-  });
-
-  const [roomType, setRoomType] = useState([]);
-  const [selectedOption, setSelectedOption] = useState(roomType[0]);
-
-  useEffect(() => {
-    axios.get('http://localhost:3001/api/v1/rooms_types', { headers: getHeaders() }).then((response) => {
-      setRoomType(response.data.rooms_types);
-    });
-  }, []);
-
-  const dispatch = useDispatch();
-
+  const [disable, setDisable] = useState(false);
+  const [name, setName] = useState('');
+  const [price, setPrice] = useState('');
+  const [picture, setPicture] = useState('');
+  const [beds, setBeds] = useState('');
+  const [description, setDesc] = useState('');
+  const [roomType, setType] = useState('');
+  const [roomTypes, setTypes] = useState([]);
+  const [roomAccoms, setAccoms] = useState([]);
+  const [checkedState, setCheckedState] = useState(
+    new Array(roomAccoms).fill(false),
+  );
   const navigate = useNavigate();
-
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    setState((prevProps) => ({
-      ...prevProps,
-      [name]: value,
-    }));
+  const handleNameChange = useCallback(
+    ({ target }) => setName(target.value),
+    [],
+  );
+  const handlePriceChange = useCallback(
+    ({ target }) => setPrice(target.value),
+    [],
+  );
+  const handlePictureChange = useCallback(
+    ({ target }) => setPicture(target.value),
+    [],
+  );
+  const handleBedsChange = useCallback(
+    ({ target }) => setBeds(target.value),
+    [],
+  );
+  const handleDescChange = useCallback(
+    ({ target }) => setDesc(target.value),
+    [],
+  );
+  const handleTypeChange = useCallback(
+    ({ target }) => setType(target.value),
+    [],
+  );
+  const handleCheckedState = (position) => {
+    const updatedCheckedState = checkedState.map(
+      (checked, index) => (index === position ? !checked : checked),
+    );
+    setCheckedState(updatedCheckedState);
   };
-
-  // const [accs, setAccs] = useState([])
-  //  const onCheck = ({ target }) => {//update accs}
-  //   accomodations: accs
-
-  const handleSubmit = (event) => {
+  useEffect(() => {
+    getFacilities().then(({ types, accoms }) => {
+      setTypes(types);
+      setCheckedState(new Array(accoms.length).fill(false));
+      setAccoms(accoms);
+    }, []);
+  }, []);
+  const onSubmit = (event) => {
     event.preventDefault();
+    setDisable(true);
+    const accomodations = [];
+    checkedState.forEach((state, index) => {
+      if (state) accomodations.push(roomAccoms[index].id);
+    });
+    if (isEmpty(accomodations)) return setDisable(false);
     const room = {
-      name: event.target.elements.name.value,
-      picture: event.target.elements.picture.value,
-      number_of_beds: event.target.elements.number_of_beds.value,
-      price: event.target.elements.price.value,
-      description: event.target.elements.description.value,
-      room_type_id: event.target.elements.room_type_id.value,
+      room: {
+        name,
+        number_of_beds: beds,
+        price,
+        description,
+        picture,
+        room_type_id: roomType,
+        accomodations,
+      },
     };
-    dispatch(createRoom(room));
-    navigate('/room-index');
+    createRoom(room)
+      .then(() => navigate('/rooms'))
+      .catch(() => setDisable(false));
   };
-
   return (
     <div className={classes.add_book_dev}>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={onSubmit}>
         <div className={classes.form}>
           <label htmlFor="room_type_id">Room Type</label>
           <select
             className={classes.select}
-            value={selectedOption}
-            onChange={(e) => setSelectedOption(e.target.value)}
+            value={roomType}
+            onChange={handleTypeChange}
           >
-            {roomType.map((item) => (
-              <option key={item.id} value={item.id}>
-                {item.name}
+            {roomTypes.map(({ id, name }) => (
+              <option key={`type-${id}`} value={id}>
+                {name}
               </option>
             ))}
           </select>
@@ -78,8 +102,10 @@ export default function AddRoom() {
             className={classes.select}
             type="text"
             name="picture"
-            value={state.picture}
-            onChange={handleInputChange}
+            required
+            disabled={disable}
+            value={picture}
+            onChange={handlePictureChange}
           />
         </div>
         <div className={classes.form}>
@@ -88,18 +114,23 @@ export default function AddRoom() {
             className={classes.select}
             type="text"
             name="name"
-            value={state.name}
-            onChange={handleInputChange}
+            required
+            disabled={disable}
+            value={name}
+            onChange={handleNameChange}
           />
         </div>
         <div className={classes.form}>
           <label htmlFor="number_of_beds">Number of Beds</label>
           <input
             className={classes.select}
-            type="text"
+            type="number"
+            min={1}
             name="number_of_beds"
-            value={state.number_of_beds}
-            onChange={handleInputChange}
+            required
+            disabled={disable}
+            value={beds}
+            onChange={handleBedsChange}
           />
         </div>
         <div className={classes.form}>
@@ -108,8 +139,10 @@ export default function AddRoom() {
             className={classes.select}
             type="text"
             name="price"
-            value={state.price}
-            onChange={handleInputChange}
+            required
+            disabled={disable}
+            value={price}
+            onChange={handlePriceChange}
           />
         </div>
         <div className={classes.form}>
@@ -118,13 +151,42 @@ export default function AddRoom() {
             className={classes.select}
             type="text"
             name="description"
-            value={state.description}
-            onChange={handleInputChange}
+            disabled={disable}
+            value={description}
+            onChange={handleDescChange}
           />
         </div>
-
+        <div>
+          <div className="flex flex-wrap mt-5 gap-4 p-3 rounded-md shadow-1bs">
+            {roomAccoms.map(({ name: alias }, index) => (
+              <div key={`accom-${index}`}>
+                <div className="flex gap-3 items-center p-2 rounded-sm shadow-sm">
+                  <input
+                    type="checkbox"
+                    id={`checkbox-${index}`}
+                    name={alias}
+                    value={alias}
+                    disabled={disable}
+                    checked={checkedState[index]}
+                    onChange={() => handleCheckedState(index)}
+                  />
+                  <label htmlFor={`checkbox-${index}`}>{alias}</label>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
         <div className={classes.button}>
-          <button type="submit">Create Room</button>
+          <button type="submit">
+            {disable ? (
+              <>
+                Saving...
+                <Spinner />
+              </>
+            ) : (
+              <>Create Room</>
+            )}
+          </button>
         </div>
       </form>
     </div>

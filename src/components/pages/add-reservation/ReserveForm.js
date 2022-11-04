@@ -3,16 +3,20 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { selectRoomsList } from '../../../apis/v1/rooms';
 import { addNewReserve } from '../../../redux/features/reservations/mine';
-import { getRoomsList } from '../../../redux/roomsListSlice';
 
 function ReserveForm() {
   const dispatch = useDispatch();
-  const { data } = useSelector((state) => state.roomsList);
   const location = useLocation();
+  // {...location.state.room_id === room.id && setSelected(true)}
+  const [selected, setSelected] = useState(false);
+  const [data, setData] = useState([])
   useEffect(() => {
-    dispatch(getRoomsList());
-  }, [dispatch]);
+    selectRoomsList().then(({ rooms }) => {
+      setData(rooms)
+    }, []);
+  }, []);
 
   const [from_date, setFrom_date] = useState('');
   const [to_date, setTo_date] = useState('');
@@ -68,7 +72,7 @@ function ReserveForm() {
                   <select onChange={onRoomChanged} className="block appearance-none w-full border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
                     <option defaultValue={0}>Please select</option>
                     {data.map((room) => (
-                      <option value={room.id} key={room.id} {...location.state.room_id === room.id ? 'selected' : 'no'} >{room.name}</option>
+                      <option value={room.id} key={room.id} selected={selected} >{room.name}</option>
                     ))}
                   </select>
                   <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
