@@ -17,12 +17,12 @@ function ReserveForm() {
 
   const [from_date, setFrom_date] = useState('');
   const [to_date, setTo_date] = useState('');
-  const [room_id, setRoom_id] = useState(0);
+  const [room_id, setRoom_id] = useState(location.state);
 
   const onFromDateChanged = (e) => setFrom_date(e.target.value);
   const onToDateChanged = (e) => setTo_date(e.target.value);
   const onRoomChanged = (e) => setRoom_id(e.target.value);
-
+console.log(room_id)
   const navigate = useNavigate();
 
   const hundleSubmit = (e) => {
@@ -66,7 +66,7 @@ function ReserveForm() {
                   Select a room
                 </label>
                 <div className="relative">
-                  <select onChange={onRoomChanged} defaultValue={location.state} className="block appearance-none w-full border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
+                  <select onChange={onRoomChanged} className="block appearance-none w-full border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
                     <option>Please select</option>
                     {data.map((room) => (
                       <option value={room.id} key={room.id}  selected={location.state == room.id}>{room.name}</option>
