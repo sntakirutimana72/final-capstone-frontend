@@ -5,6 +5,7 @@ import {
   ProtectedNode,
   AdminRoute,
 } from './components/middlewares';
+import SplashScreen from './components/pages/spalshScreen/Splash';
 import {
   Register, Signin, Logout,
 } from './components/pages/authentication';
@@ -25,6 +26,7 @@ const App = () => (
       <section className="w-full">
         <Routes>
           <Route element={<SignedInRoute />}>
+            <Route path="/" element={<SplashScreen />} />
             <Route path="login" element={<Signin />} />
             <Route path="register" element={<Register />} />
           </Route>
