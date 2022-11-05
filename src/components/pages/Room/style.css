@@ -1,8 +1,3 @@
-/* .link {
-  text-decoration: none;
-  color: rgb(26, 26, 26);
-} */
-
 .link:hover {
   color: var(--primary-green);
 }
