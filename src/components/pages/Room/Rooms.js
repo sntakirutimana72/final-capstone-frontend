@@ -11,7 +11,7 @@ import NoData from '../../common/NoData';
 import { isNilOrEmpty } from '../../../helpers/utils';
 import './Carousel.css';
 
-function Rooms() {
+const Rooms = () => {
   const dispatch = useDispatch();
   const { data, loading, error } = useSelector((state) => state.rooms);
 
@@ -88,6 +88,6 @@ function Rooms() {
       </div>
     </>
   );
-}
+};
 
 export default Rooms;

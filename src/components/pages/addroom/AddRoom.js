@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getFacilities, createRoom } from '../../../apis/v1/rooms';
@@ -5,7 +6,7 @@ import { isEmpty } from '../../../helpers/utils';
 import Spinner from '../../common/Spinner';
 import classes from './AddRoom.module.css';
 
-export default function AddRoom() {
+const AddRoom = () => {
   const [disable, setDisable] = useState(false);
   const [name, setName] = useState('');
   const [price, setPrice] = useState('');
@@ -44,9 +45,7 @@ export default function AddRoom() {
     [],
   );
   const handleCheckedState = (position) => {
-    const updatedCheckedState = checkedState.map(
-      (checked, index) => (index === position ? !checked : checked),
-    );
+    const updatedCheckedState = checkedState.map((checked, index) => (index === position ? !checked : checked));
     setCheckedState(updatedCheckedState);
   };
   useEffect(() => {
@@ -191,4 +190,6 @@ export default function AddRoom() {
       </form>
     </div>
   );
-}
+};
+
+export default AddRoom;
