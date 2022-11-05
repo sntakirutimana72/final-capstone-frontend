@@ -78,7 +78,7 @@ To run the tests for linters locally, you must have node installed on your compu
 - Git to versionning your work.
 
 
-### Authors
+## Authors
 👤 **Ali**
 
 - GitHub: [@aliatayee](https://github.com/aliatayee)
@@ -105,7 +105,7 @@ To run the tests for linters locally, you must have node installed on your compu
 - LinkedIn: [steve-ntakirutimana](https://www.linkedin.com/in/steve-ntakirutimana/)
 
 
-### 🤝 Contribution
+## 🤝 Contribution
 
 Contributions, issues, and feature requests are welcome!
 
@@ -117,12 +117,12 @@ Feel free to check the [issues page](../../issues/).
 Give a ⭐️ if you like this project!
 
 
-### Acknowledgments
+## Acknowledgments
 
 - Hat tip to anyone whose code was used
 - Inspiration
 - etc
 
-### 📝 License
+## 📝 License
 
 This project is [MIT](./LICENSE) licensed.
